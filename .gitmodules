@@ -1,7 +1,0 @@
-[submodule "projects/c/vulkan_prj/vendor/glfw"]
-	path = projects/c/vulkan_prj/vendor/glfw
-	url = https://github.com/glfw/glfw.git
-[submodule "projects/c/vulkan_project/vendor/glfw"]
-	path = projects/c/vulkan_project/vendor/glfw
-	url = https://github.com/glfw/glfw.git
-	branch = 3.3-stable
