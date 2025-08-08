@@ -9,3 +9,4 @@ pupgui/
 user-tmpfiles.d/
 vesktop/
 xfce4/
+nvim/plugin/packer_compiled.lua
