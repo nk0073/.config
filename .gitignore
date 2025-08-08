@@ -1,0 +1,11 @@
+QtProject.conf
+Thunar/
+btop/
+dconf/
+gtk-3.0/bookmarks
+pavucontrol.ini
+pulse/
+pupgui/
+user-tmpfiles.d/
+vesktop/
+xfce4/
