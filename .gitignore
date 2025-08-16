@@ -10,3 +10,12 @@ user-tmpfiles.d/
 vesktop/
 xfce4/
 nvim/plugin/packer_compiled.lua
+weechat/
+qBittorrent/
+obs-studio/
+vifm/
+monero*/
+libreoffice/
+glib*/
+krita*/
+nomacs/

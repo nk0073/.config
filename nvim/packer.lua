@@ -1,20 +1,16 @@
--- This file can be loaded by calling `lua require('plugins')` from your init.vim
-
--- Only required if you have packer configured as `opt`
 vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
 
-
     -- Themes
-    use 'sainnhe/gruvbox-material',
-    use 'shaunsingh/nord.nvim',
+    use 'sainnhe/gruvbox-material'
+    use 'shaunsingh/nord.nvim'
     use 'dgox16/oldworld.nvim'
     use 'Mofiqul/vscode.nvim'
-    use 'bluz71/vim-moonfly-colors' 
-    use 'kdheepak/monochrome.nvim' 
+    use 'bluz71/vim-moonfly-colors'
+    use 'kdheepak/monochrome.nvim'
     use 'catppuccin/nvim'
     use 'nyoom-engineering/oxocarbon.nvim'
     use 'vague2k/vague.nvim'
@@ -44,6 +40,14 @@ return require('packer').startup(function(use)
         },
     })
 
+    use {
+        'norcalli/nvim-colorizer.lua',
+        config = function()
+            require 'colorizer'.setup()
+        end
+    }
+
+
     -- etc
     use {
         'williamboman/mason.nvim',
@@ -57,7 +61,7 @@ return require('packer').startup(function(use)
         end
     }
 
-    use 'ThePrimeagen/harpoon' 
+    use 'ThePrimeagen/harpoon'
     use {
         "windwp/nvim-autopairs",
         event = "InsertEnter",
@@ -71,4 +75,5 @@ return require('packer').startup(function(use)
     }
     use 'andweeb/presence.nvim'
     use 'tikhomirov/vim-glsl'
+    use 'nvim-tree/nvim-tree.lua'
 end)

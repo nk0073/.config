@@ -1,13 +1,16 @@
 #!/bin/bash
 
-# create a dir if doesn't exist
-mkdir -p ~/Pictures/Screenshot
+dir="$HOME/Pictures/Screenshot"
+mkdir -p "$dir"
 
-filename=~/Pictures/Screenshot/screenshot_$(date +'%Y-%m-%d_%H-%M-%S').png
+file="$dir/screenshot_$(date +'%Y-%m-%d_%H-%M-%S').png"
 
-# screenshot of the selected area
-grim -g "$(slurp)" "$filename"
+# select region (Esc cancels)
+geom=$(slop -f "%g") || exit 1
+
+# grab selection and save
+maim -g "$geom" "$file"
 
 # copy to clipboard
-wl-copy --type image/png < "$filename"
+xclip -selection clipboard -t image/png -i "$file"
 

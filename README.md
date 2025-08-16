@@ -17,9 +17,9 @@ basic stuff
 ```sh
 sudo xpbs-install -Su
 sudo xbos-install -Sy void-repo-multilib void-repo-nonfree void-repo-multilib-nonfree
-sudo xbps-install -Sy python nodejs clang git unzip ninja meson cmake git \
+sudo xbps-install -Sy python nodejs clang git unzip ninja meson cmake git iotop vifm rsync \
     libgcc-32bit libstdc++-32bit libdrm-32bit libglvnd-32bit \
-    neovim firefox telegram-desktop kitty thunar \
+    neovim firefox telegram-desktop kitty thunar qbittorrent wireguard \
     steam lutris # now this part isn't necessary if the setup is non game related
 ```
 
@@ -44,6 +44,15 @@ Terminal=false
 StartupNotify=true
 StartupWMClass=vesktop
 EOF
+
+# flatpak cus vlc and spotify are shit outside of it
+sudo xbps-install -S flatpak
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+flatpak install -y flathub org.videolan.VLC com.spotify.Client
+
+# spotify fix
+# may need a reboot after flatpak installation
+bash <(curl -sSL https://spotx-official.github.io/run.sh) -fh
 ```
 
 NVIDIA
@@ -62,21 +71,12 @@ xbps-install -Sy mesa mesa-dri mesa-dri-32bit mesa-vulkan-intel mesa-vulkan-inte
 ```
 
 ### VM
-## Hyprland
-not done yet
-```sh
-echo repository=https://raw.githubusercontent.com/Makrennel/hyprland-void/repository-x86_64-glibc | sudo tee /etc/xbps.d/hyprland-void.conf
-sudo xbps-install -S
-sudo xbps-install -Sy hyprland hyprland-devel xdg-desktop-portal-hyprland pulseaudio hyprlock slurp wl-clipboard \
-    swww wofi wlsunset qt5-wayland
-```
-
-## i3wm
-haven't even started
+#### dwm
+add stuff here after setup
 
 ## Nvim setup 
 
-Arch:
+if happened to use arch:
 ```sh
 sudo pacman -Syu --noconfirm && sudo pacman -S --noconfirm clang nodejs npm python-pip git unzip neovim
 ```
