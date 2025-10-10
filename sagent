@@ -1,0 +1,37 @@
+#!/bin/bash
+
+# script that starts an ssh-agent for the session. 
+# add source sagent to .bashrc for it to start automatically
+# sagent add to add a key (id_rsa)
+
+var_file="/tmp/ssh-agent-vars"
+
+if [ ! -e "$var_file" ]; then
+    ssh-agent -s > $var_file 
+fi
+
+eval $(cat $var_file) &> /dev/null
+
+if [ $# -eq 1 ]; then
+    case $1 in
+        add)
+            ssh-add $HOME/.ssh/id_rsa
+            ;;
+
+        stop)
+            kill $SSH_AGENT_PID
+            rm -f $var_file
+            SSH_AUTH_SOCK=
+            SSH_AGENT_PID=
+            ;;
+
+        *)
+            echo "Un7nown arg3ment"
+            (exit 1)
+            ;;
+ esac
+
+fi
+
+(exit 0)
+

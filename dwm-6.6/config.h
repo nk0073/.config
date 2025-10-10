@@ -28,18 +28,17 @@ static const Rule rules[] = {
 // 	 */
 // 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Firefox",  NULL,       NULL,       0,            0,           -1 },
-    { "honkers-railway-launcher", NULL, NULL, 0, 1, -1},
+    { "honkers-railway-launcher", NULL, NULL, 0,        1,           -1 },
 };
 
 static const char *const autostart[] = {
     "xset", "-b",           NULL,
-    "xrandr", "--output", "HDMI-1", "--primary", "--auto", "--scale", "1x1", "--pos", "0x0", NULL,
-    "xrandr", "--output", "DP-5",   "--auto", "--pos", "1800x1080", NULL,
     "pipewire", NULL,
     "setxkbmap", "-layout", "us,ru", "-option", "grp:ctrls_toggle", NULL,
     "nitrogen", "--set-zoom-fill", "--head=0", "/home/plky/.config/wallpaper/nhk.png", NULL,
     "nitrogen", "--set-zoom-fill", "--head=1", "/home/plky/.config/wallpaper/nhk.png", NULL,
     "sh", "-c", "/home/plky/.config/dwmstat.sh &", NULL,
+    "redshift", "-l", "40.7:-74.0", "-t", "6500:3600", NULL,
     // screen blank/off after 1h 
     "xset", "s", "3600", "3600", NULL,
     "xset", "+dpms", NULL,
@@ -124,6 +123,7 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+    { MODKEY,                       XK_f,      togglefullscr,  {0} },
 
     { 0, XF86XK_AudioRaiseVolume,              spawn,         { .v = volup } },
     { 0, XF86XK_AudioLowerVolume,              spawn,         { .v = voldown } },

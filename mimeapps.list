@@ -9,17 +9,19 @@ application/x-extension-shtml=userapp-Firefox-9KMBB3.desktop
 application/xhtml+xml=userapp-Firefox-9KMBB3.desktop
 application/x-extension-xhtml=userapp-Firefox-9KMBB3.desktop
 application/x-extension-xht=userapp-Firefox-9KMBB3.desktop
-inode/directory=Thunar.desktop
+inode/directory=thunar.desktop
 application/octet-stream=thunar.desktop
 x-scheme-handler/file=thunar.desktop
 x-scheme-handler/discord=vesktop.desktop
-image/jpeg=nomacs.desktop
-image/png=nomacs.desktop
-image/gif=nomacs.desktop
-image/webp=nomacs.desktop
-image/bmp=nomacs.desktop
-image/tiff=nomacs.desktop
+image/jpeg=feh.desktop
+image/png=feh.desktop
+image/gif=feh.desktop
+image/webp=feh.desktop
+image/bmp=feh.desktop
+image/tiff=feh.desktop
 application/pdf=firefox.desktop
+x-scheme-handler/discord-1131048770109460500=discord-1131048770109460500.desktop
+application/x-directory=thunar.desktop
 
 [Added Associations]
 x-scheme-handler/http=userapp-Firefox-9KMBB3.desktop;

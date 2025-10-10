@@ -19,3 +19,8 @@ libreoffice/
 glib*/
 krita*/
 nomacs/
+ibus/
+GIMP/
+chromium/
+libaccounts-glib/
+keepassxc/
