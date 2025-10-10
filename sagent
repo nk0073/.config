@@ -3,6 +3,7 @@
 # script that starts an ssh-agent for the session. 
 # add source sagent to .bashrc for it to start automatically
 # sagent add to add a key (id_rsa)
+# sagent stop clears it
 
 var_file="/tmp/ssh-agent-vars"
 
