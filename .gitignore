@@ -10,7 +10,6 @@ user-tmpfiles.d/
 vesktop/
 xfce4/
 nvim/plugin/packer_compiled.lua
-weechat/
 qBittorrent/
 obs-studio/
 vifm/
@@ -24,3 +23,19 @@ GIMP/
 chromium/
 libaccounts-glib/
 keepassxc/
+
+# weechat
+weechat/sec.conf
+weechat/irc.conf
+weechat/matrix.conf
+weechat/slack.conf
+weechat/relay.conf
+weechat/wee-slack.conf
+weechat/discord.conf
+weechat/logs/
+weechat/script/
+weechat/plugins/
+weechat/xfer.conf
+weechat/*.conf.bak
+weechat/*.conf.old
+
