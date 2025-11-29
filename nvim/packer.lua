@@ -14,6 +14,8 @@ return require('packer').startup(function(use)
     use 'catppuccin/nvim'
     use 'nyoom-engineering/oxocarbon.nvim'
     use 'vague2k/vague.nvim'
+    use "blazkowolf/gruber-darker.nvim"
+    use 'ericbn/vim-solarized'
 
     -- TS, LSP
     use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
@@ -28,6 +30,14 @@ return require('packer').startup(function(use)
     use({ 'hrsh7th/cmp-nvim-lsp' })
 
     use "williamboman/mason-lspconfig.nvim"
+
+    use 'mfussenegger/nvim-dap'
+    use {
+        "igorlfs/nvim-dap-view",
+        config = function()
+            require("dap-view").setup({})
+        end,
+    }
 
     use({
         'mrcjkb/rustaceanvim',

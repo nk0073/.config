@@ -26,19 +26,25 @@ static const Rule rules[] = {
 // 	 *	WM_CLASS(STRING) = instance, class
 // 	 *	WM_NAME(STRING) = title
 // 	 */
-// 	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Firefox",  NULL,       NULL,       0,            0,           -1 },
-    { "honkers-railway-launcher", NULL, NULL, 0,        1,           -1 },
+// 	/* class      instance    title       tags mask     isfloating   monitor   border*/
+	{ "Firefox",  NULL,       NULL,       0,            0,           -1,        1},
+    { "honkers-railway-launcher", NULL, NULL, 0,        1,           -1 ,      -1},
 };
 
 static const char *const autostart[] = {
     "xset", "-b",           NULL,
     "pipewire", NULL,
+    "picom", "--experimental-backends", "-b", NULL,
     "setxkbmap", "-layout", "us,ru", "-option", "grp:ctrls_toggle", NULL,
-    "nitrogen", "--set-zoom-fill", "--head=0", "/home/plky/.config/wallpaper/nhk.png", NULL,
-    "nitrogen", "--set-zoom-fill", "--head=1", "/home/plky/.config/wallpaper/nhk.png", NULL,
-    "sh", "-c", "/home/plky/.config/dwmstat.sh &", NULL,
+    // uhhh this works just for 1 of the screens so set 
+    // the wallpaper in nitrogen gui (yuck) and then nitrogen --restore
+    // "nitrogen", "--set-zoom-fill", "/home/plky/.config/wallpaper/kirino.png", "--head=0", NULL,
+    // "nitrogen", "--set-zoom-fill", "/home/plky/.config/wallpaper/kirino_win7.png", "--head=1", NULL,
+    "nitrogen", "--restore", NULL,
+    "/home/plky/.config/dwmstat.sh", NULL,
     "redshift", "-l", "40.7:-74.0", "-t", "6500:3600", NULL,
+    "xcompmgr", NULL,
+    
     // screen blank/off after 1h 
     "xset", "s", "3600", "3600", NULL,
     "xset", "+dpms", NULL,
@@ -74,9 +80,12 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char* dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_background2, "-nf", col_foreground2, "-sb", col_cyan, "-sf", col_background, NULL };
+static const char* dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb",
+    col_background2, "-nf", col_foreground2, "-sb", col_cyan, "-sf", col_background, NULL };
 static const char* termcmd[]  = { "kitty", NULL };
-static const char* screenshot[] = { "/home/plky/.config/screenshot.sh", NULL };
+static const char* screenshot[] = { "flameshot", "gui", NULL };
+static const char* screenshot_full[] = { "flameshot", "full", "--clipboard", NULL };
+// static const char* screenshot[] = { "/home/plky/.config/screenshot.sh", NULL };
 
 // media buttons
 #include <X11/XF86keysym.h>
@@ -132,6 +141,7 @@ static const Key keys[] = {
     { 0, XF86XK_AudioNext,                     spawn,         { .v = mnext } },
     { 0, XF86XK_AudioPrev,                     spawn,         { .v = mprev } },
     { 0,                            XK_Print,  spawn,         { .v = screenshot } },
+    { MODKEY,                       XK_Print,  spawn,         { .v = screenshot_full } },
 };
 
 /* button definitions */

@@ -23,6 +23,9 @@ GIMP/
 chromium/
 libaccounts-glib/
 keepassxc/
+wireshark/
+krita*
+PureRef/
 
 # weechat
 weechat/sec.conf

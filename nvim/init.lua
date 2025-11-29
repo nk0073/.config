@@ -1,8 +1,21 @@
 -- Visuals
 vim.o.guicursor = "n-v-c-sm:block,i:ver25,r-cr-o:hor20"
 vim.g.nord_disable_background = true
-vim.cmd.colorscheme('vague')
+-- One of the favorites
+-- vim.cmd.colorscheme('vague')
+vim.cmd.colorscheme('gruber-darker')
 vim.o.background = 'dark'
+
+vim.api.nvim_create_user_command('Dark', function()
+  vim.o.background = 'dark'
+  vim.cmd.colorscheme('gruber-darker')
+end, {})
+
+vim.api.nvim_create_user_command('Light', function()
+    vim.o.background = 'light'
+  vim.cmd.colorscheme('solarized')
+end, {})
+
 vim.cmd [[
   highlight Normal guibg=NONE ctermbg=NONE
   highlight NormalNC guibg=NONE ctermbg=NONE
@@ -54,4 +67,4 @@ vim.opt.isfname:append("@-@")
 
 vim.o.updatetime = 50
 
-
+vim.opt.colorcolumn = "105"

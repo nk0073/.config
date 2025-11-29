@@ -6,6 +6,8 @@
 alias ls='ls --color=auto'
 alias cclear="printf '\033[3J\033[H\033[2J'"
 alias v="nvim"
+alias sagentsource="source ~/.local/bin/sagent"
+alias rms="shred -uzn8"
 
 PS1='[\u@\h \W]\$ '
 . "$HOME/.cargo/env"
@@ -19,3 +21,4 @@ EDITOR=nvim
 PATH="$HOME/.local/bin:$JAVA_HOME/bin:$PATH"
 
 source sagent
+
