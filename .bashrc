@@ -18,7 +18,10 @@ rpi="plky@192.168.4.10"
 
 JAVA_HOME=/usr/lib/jvm/default-jdk
 EDITOR=nvim
-PATH="$HOME/.local/bin:$JAVA_HOME/bin:$PATH"
+export DOTNET_ROOT="$HOME/.dotnet"
+export PATH="$HOME/.local/bin:$JAVA_HOME/bin:$PATH"
+export PATH="$HOME/.dotnet:$HOME/.dotnet/tools:$PATH"
+export PATH="$HOME/.local/bin/flutter/bin:$PATH"
 
 source sagent
 

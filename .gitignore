@@ -26,6 +26,9 @@ keepassxc/
 wireshark/
 krita*
 PureRef/
+xdg-desktop-portal/
+gtk-3.0/
+gtk-4.0/
 
 # weechat
 weechat/sec.conf
