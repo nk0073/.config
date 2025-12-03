@@ -82,7 +82,7 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char* dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb",
     col_background2, "-nf", col_foreground2, "-sb", col_cyan, "-sf", col_background, NULL };
-static const char* termcmd[]  = { "kitty", NULL };
+static const char* termcmd[]  = { "st", NULL };
 static const char* screenshot[] = { "flameshot", "gui", NULL };
 static const char* screenshot_full[] = { "flameshot", "full", "--clipboard", NULL };
 // static const char* screenshot[] = { "/home/plky/.config/screenshot.sh", NULL };
