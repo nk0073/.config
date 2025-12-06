@@ -4,11 +4,12 @@
 [[ $- != *i* ]] && return
 
 alias ls='ls --color=auto'
-alias cclear="printf '\033[3J\033[H\033[2J'"
+alias cclear="printf '\e[3J\e[H\e[2J'"
 alias v="nvim"
 alias sagentsource="source ~/.local/bin/sagent"
 alias rms="shred -uzn8"
 alias ccp="xclip -selection clipboard" # stands for clipboard copy
+alias du.="du -hs ./* | sort -rh"
 
 PS1='[\u@\h \W]\$ '
 . "$HOME/.cargo/env"

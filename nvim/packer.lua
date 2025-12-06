@@ -35,7 +35,7 @@ return require('packer').startup(function(use)
     use {
         "igorlfs/nvim-dap-view",
         config = function()
-            require("dap-view").setup({})
+            local dap_view = require("dap-view").setup({})
         end,
     }
 
@@ -57,13 +57,13 @@ return require('packer').startup(function(use)
         end
     }
 
-    use {
-        'nvim-flutter/flutter-tools.nvim',
-        requires = {
-            'nvim-lua/plenary.nvim',
-            'stevearc/dressing.nvim', -- optional for vim.ui.select
-        },
-    }
+    -- use {
+    --     'nvim-flutter/flutter-tools.nvim',
+    --     requires = {
+    --         'nvim-lua/plenary.nvim',
+    --         'stevearc/dressing.nvim', -- optional for vim.ui.select
+    --     },
+    -- }
 
 
     -- etc

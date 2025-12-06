@@ -21,7 +21,7 @@ if [ $# -eq 1 ]; then
 
         stop)
             kill $SSH_AGENT_PID &> /dev/null
-            rm -f $var_file
+            shred -uzn7 $var_file
             unset SSH_AUTH_SOCK
             unset SSH_AGENT_PID
             ;;
