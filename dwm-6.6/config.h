@@ -34,14 +34,13 @@ static const Rule rules[] = {
 static const char *const autostart[] = {
     "xset", "-b",           NULL,
     "pipewire", NULL,
-    "picom", "--experimental-backends", "-b", NULL,
     "setxkbmap", "-layout", "us,ru", "-option", "grp:ctrls_toggle", NULL,
     // uhhh this works just for 1 of the screens so set 
     // the wallpaper in nitrogen gui (yuck) and then nitrogen --restore
     // "nitrogen", "--set-zoom-fill", "/home/plky/.config/wallpaper/kirino.png", "--head=0", NULL,
     // "nitrogen", "--set-zoom-fill", "/home/plky/.config/wallpaper/kirino_win7.png", "--head=1", NULL,
     "nitrogen", "--restore", NULL,
-    "/home/plky/.config/dwmstat.sh", NULL,
+    "$HOME/.config/dwmstat.sh", NULL,
     "redshift", "-l", "40.7:-74.0", "-t", "6500:3600", NULL,
     "xcompmgr", NULL,
     

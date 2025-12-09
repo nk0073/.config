@@ -49,8 +49,13 @@ cmp.setup({
     }),
 })
 
-local lspconfig = require('lspconfig')
+vim.lsp.config("clangd", {
+    -- ain't working
+    -- cmd = {"clangd", "-xc-header"}
+})
+
 local mason_lspconfig = require('mason-lspconfig')
+
 mason_lspconfig.setup {
     PATH = "append",
     handlers = {

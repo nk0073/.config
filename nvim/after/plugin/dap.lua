@@ -13,6 +13,31 @@ dap.configurations.c = {
             return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
         end,
     },
+    {
+        name = "Attach to process",
+        type = "lldb",
+        request = "attach",
+
+        --original fallback
+        -- pid = require('dap.utils').pick_process,
+
+        pid = function()
+          return tonumber(vim.fn.input('PID: '))
+        end,
+
+
+        -- fix this
+        -- pid = (function()
+        --     local str = vim.fn.input('Use PID or see process list (l): ')
+        --     if str == "l" or str == "" then
+        --         return require('dap.utils').pick_process
+        --     else
+        --         return function()
+        --             return tonumber(vim.fn.input('PID: '))
+        --         end
+        --     end
+        -- end)()
+    },
 }
 
 dap.configurations.cpp = {
