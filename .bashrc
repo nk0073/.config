@@ -23,7 +23,6 @@ EDITOR=nvim
 export DOTNET_ROOT="$HOME/.dotnet"
 export PATH="$HOME/.local/bin:$JAVA_HOME/bin:$PATH"
 export PATH="$HOME/.dotnet:$HOME/.dotnet/tools:$PATH"
-export PATH="$HOME/.local/bin/flutter/bin:$PATH"
 
 source sagent
 

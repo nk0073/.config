@@ -28,7 +28,8 @@ static const Rule rules[] = {
 // 	 */
 // 	/* class      instance    title       tags mask     isfloating   monitor   border*/
 	{ "Firefox",  NULL,       NULL,       0,            0,           -1,        1},
-    { "honkers-railway-launcher", NULL, NULL, 0,        1,           -1 ,      -1},
+    { "honkers-railway-launcher", NULL, NULL, 0,        1,           -1 ,       1},
+    { "feh",      NULL,       NULL,       0,            1,           -1,        1},
 };
 
 static const char *const autostart[] = {

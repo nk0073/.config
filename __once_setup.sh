@@ -9,6 +9,9 @@ if [ -e $CHECK_FILE_RAN ]; then
 fi
 rm $CHECK_FILE_RAN 
 
+mkdir -p ~/.local/bin
+mkdir -p ~/.local/share
+
 ldd /bin/ls | grep musl 2>&1 /dev/null
 is_glibc=$1
 
@@ -22,7 +25,7 @@ sudo xbps-install -y clang git unzip ninja cmake git rsync \
     neovim firefox telegram-desktop thunar xcompmgr xorg-minimal xorg-fonts \
     xf86-input-evdev xf86-input-joystick xf86-input-libinput xtools dbus elogind \
     feh noto-fonts-ttf noto-fonts-emoji xdg-desktop-portal xdg-desktop-portal-gtk \
-    xclip xset pavucontrol pipewire redshift setxkbmap
+    xclip xset pavucontrol pipewire redshift setxkbmap lldb
     
 
 # xf86-input-mtrack xf86-input-synaptics
@@ -69,6 +72,7 @@ sudo make install && make clean
 # st
 cd ../st-0.9.3/
 sudo ./install.sh; make clean
+ln -s $(realpath scripts/*) ~/.local/share
 
 
 touch $CHECK_FILE_RAN # random file to check if the script has ran before
