@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 
 CHECK_FILE_RAN=~/.local/share/.____12974691041jnni32@212479.plky.srcipt.ran
@@ -25,8 +25,9 @@ sudo xbps-install -y clang git unzip ninja cmake git rsync \
     neovim firefox telegram-desktop thunar xcompmgr xorg-minimal xorg-fonts \
     xf86-input-evdev xf86-input-joystick xf86-input-libinput xtools dbus elogind \
     feh noto-fonts-ttf noto-fonts-emoji xdg-desktop-portal xdg-desktop-portal-gtk \
-    xclip xset pavucontrol pipewire redshift setxkbmap lldb
-    
+    xclip xset pavucontrol pipewire redshift setxkbmap lldb \
+    libXinerama-devel libXft-devel libX11-devel pkg-config freetype-devel \
+    zip unzip flatpak 
 
 # xf86-input-mtrack xf86-input-synaptics
 # maybe those 2 too, if on a laptop
@@ -34,7 +35,8 @@ sudo xbps-install -y clang git unzip ninja cmake git rsync \
 if [[ "$1" != "-compact" ]]; then
     sudo xbps-install -Syu void-repo-multilib{,-nonfree}
     sudo xbps-install -y qbittorrent wireguard steam lutris nitrogen \
-        libgcc-32bit libstdc++-32bit libdrm-32bit libglvnd-32bit libva-32bit
+        libgcc-32bit libstdc++-32bit libdrm-32bit libglvnd-32bit libva-32bit \
+        obs
 
     if [[ $is_mesa -eq 1 ]]; then
         sudo xbps-install mesa-dri-32bit vulkan-loader mesa-vulkan-radeon amdvlk
@@ -52,7 +54,7 @@ fi
 # intel igpu
 if lspci -k | grep -EA3 'VGA|3D|Display' | grep -i "Intel Corporation" > /dev/null; then
     sudo xbps-install -y intel-video-accel 
-elif lspci -k | grep -EA3 'VGA|3D|Display' | grep -q 'AMD';
+elif lspci -k | grep -EA3 'VGA|3D|Display' | grep -q 'AMD'; then
     sudo xbps-install -y xf86-video-amdgpu mesa-vaapi mesa-vdpau
 fi
 
@@ -72,7 +74,28 @@ sudo make install && make clean
 # st
 cd ../st-0.9.3/
 sudo ./install.sh; make clean
-ln -s $(realpath scripts/*) ~/.local/share
+ln -s $(realpath scripts/*) ~/.local/bin
+
+# font
+mkdir -p ~/.local/share/fonts
+wget -P ~/.local/share/fonts https://github.com/IdreesInc/Miracode/releases/download/v1.0/Miracode.ttf
+fc-cache -fv
+
+
+# flatpak
+flatpak remote-add --if-not-exists --user flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+flatpak install --user -y flathub org.videolan.VLC com.spotify.Client org.vinegarhq.Sober
+flatpak mask com.spotify.Client
+
+# spotify fix
+bash <(curl -sSL https://spotx-official.github.io/run.sh) -fh
+
+# packer (nvim)
+git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+
+
+
 
 
 touch $CHECK_FILE_RAN # random file to check if the script has ran before
