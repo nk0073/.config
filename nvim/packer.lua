@@ -94,4 +94,5 @@ return require('packer').startup(function(use)
     use 'andweeb/presence.nvim'
     use 'tikhomirov/vim-glsl'
     use 'nvim-tree/nvim-tree.lua'
+    use 'lambdalisue/vim-suda' # SudaWrite 
 end)

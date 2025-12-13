@@ -1,22 +1,26 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 2;        /* border pixel of windows */
+static const unsigned int borderpx  = 3;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
-static const int showbar            = 1;        /* 0 means no bar */
-static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]    = { "0xProto Nerd Font:size=12" };
-static const char dmenufont[] = "0xProto Nerd Font:size=12";
+static const int showbar            = 10;        /* 0 means no bar */
+static const int topbar             = 0;        /* 0 means bottom bar */
+static const char *fonts[]    = { "CommitMono:size=16" };
+static const char dmenufont[] = "CommitMono:size=17";
 static const char col_foreground[]  = "#BCC4C9";
-static const char col_foreground2[] = "#5B6265";
+static const char col_foreground2[] = "#f78ade";
 static const char col_background[]  = "#1A2023";
 static const char col_background2[] = "#252B2E";
-static const char col_cyan[]        = "#89B7B0";
+static const char col_sel_border[]  = "#dfdfd9";
+static const char col_norm_border[] = "#182221";
 static const char *colors[][3]      = {
 	/*               fg               bg               border */
 	[SchemeNorm] = { col_foreground2, col_background2, col_background2 },
-	[SchemeSel]  = { col_foreground,  col_background,  col_cyan  },
+	[SchemeSel]  = { col_foreground,  col_background,  col_sel_border  },
 };
+
+static const Gap default_gap =
+{.isgap = 0, .realgap = 15, .gappx = 15};
 
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
@@ -27,9 +31,9 @@ static const Rule rules[] = {
 // 	 *	WM_NAME(STRING) = title
 // 	 */
 // 	/* class      instance    title       tags mask     isfloating   monitor   border*/
-	{ "Firefox",  NULL,       NULL,       0,            0,           -1,        1},
-    { "honkers-railway-launcher", NULL, NULL, 0,        1,           -1 ,       1},
-    { "feh",      NULL,       NULL,       0,            1,           -1,        1},
+	{ "Firefox",  NULL,       NULL,       0,            0,           -1,        borderpx },
+    { "honkers-railway-launcher", NULL, NULL, 0,        1,           -1 ,       borderpx },
+    { "feh",      NULL,       NULL,       0,            1,           -1,        borderpx },
 };
 
 static const char *const autostart[] = {
@@ -81,7 +85,9 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char* dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb",
-    col_background2, "-nf", col_foreground2, "-sb", col_cyan, "-sf", col_background, NULL };
+    col_background2, "-nf", col_foreground2, "-sb", col_sel_border, "-sf", col_background,
+    "-i",
+    NULL };
 static const char* termcmd[]  = { "st", NULL };
 static const char* screenshot[] = { "flameshot", "gui", NULL };
 static const char* screenshot_full[] = { "flameshot", "full", "--clipboard", NULL };
@@ -112,7 +118,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
+	{ MODKEY,                       XK_o,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
@@ -142,6 +148,8 @@ static const Key keys[] = {
     { 0, XF86XK_AudioPrev,                     spawn,         { .v = mprev } },
     { 0,                            XK_Print,  spawn,         { .v = screenshot } },
     { MODKEY,                       XK_Print,  spawn,         { .v = screenshot_full } },
+	{ MODKEY|ShiftMask,             XK_minus,  setgaps,        {.i = GAP_RESET } },
+	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = GAP_TOGGLE} },
 };
 
 /* button definitions */

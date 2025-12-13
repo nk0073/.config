@@ -12,7 +12,7 @@ alias ccp="xclip -selection clipboard" # stands for clipboard copy
 alias du.="du -hs ./* | sort -rh"
 
 PS1='[\u@\h \W]\$ '
-. "$HOME/.cargo/env"
+# . "$HOME/.cargo/env"
 
 p="/home/plky/projects"
 ls="ls -Utp --color=auto"
@@ -20,9 +20,9 @@ rpi="plky@192.168.4.10"
 
 JAVA_HOME=/usr/lib/jvm/default-jdk
 EDITOR=nvim
-export DOTNET_ROOT="$HOME/.dotnet"
+# export DOTNET_ROOT="$HOME/.dotnet"
 export PATH="$HOME/.local/bin:$JAVA_HOME/bin:$PATH"
-export PATH="$HOME/.dotnet:$HOME/.dotnet/tools:$PATH"
+# export PATH="$HOME/.dotnet:$HOME/.dotnet/tools:$PATH"
 
 source sagent
 

@@ -1,35 +1,39 @@
 --- dwm.c
 +++ dwm.c
-@@ -139,6 +139,7 @@ typedef struct {
- 	unsigned int tags;
- 	int isfloating;
- 	int monitor;
-+	int bw;
- } Rule;
+@@ -1703,7 +1703,7 @@ textnw(const char *text, unsigned int len) {
  
- /* function declarations */
-@@ -287,6 +288,7 @@ applyrules(Client *c)
- 	/* rule matching */
- 	c->isfloating = 0;
- 	c->tags = 0;
-+	c->bw = borderpx;
- 	XGetClassHint(dpy, c->win, &ch);
- 	class    = ch.res_class ? ch.res_class : broken;
- 	instance = ch.res_name  ? ch.res_name  : broken;
-@@ -299,6 +301,8 @@ applyrules(Client *c)
- 		{
- 			c->isfloating = r->isfloating;
- 			c->tags |= r->tags;
-+			if (r->bw != -1)
-+				c->bw = r->bw;
- 			for (m = mons; m && m->num != r->monitor; m = m->next);
- 			if (m)
- 				c->mon = m;
-@@ -1059,7 +1063,6 @@ manage(Window w, XWindowAttributes *wa)
- 		c->y = c->mon->wy + c->mon->wh - HEIGHT(c);
- 	c->x = MAX(c->x, c->mon->wx);
- 	c->y = MAX(c->y, c->mon->wy);
--	c->bw = borderpx;
+ void
+ tile(Monitor *m) {
+-	unsigned int i, n, h, mw, my, ty;
++	unsigned int i, n, h, r, g = 0, mw, my, ty;
+ 	Client *c;
  
- 	wc.border_width = c->bw;
- 	XConfigureWindow(dpy, w, CWBorderWidth, &wc);
+ 	for(n = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), n++);
+@@ -1711,19 +1711,21 @@ tile(Monitor *m) {
+ 		return;
+ 
+ 	if(n > m->nmaster)
+-		mw = m->nmaster ? m->ww * m->mfact : 0;
++		mw = m->nmaster ? (m->ww - (g = gappx)) * m->mfact : 0;
+ 	else
+ 		mw = m->ww;
+ 	for(i = my = ty = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), i++)
+ 		if(i < m->nmaster) {
+-			h = (m->wh - my) / (MIN(n, m->nmaster) - i);
++			r = MIN(n, m->nmaster) - i;
++			h = (m->wh - my - gappx * (r - 1)) / r;
+ 			resize(c, m->wx, m->wy + my, mw - (2*c->bw), h - (2*c->bw), False);
+-			my += HEIGHT(c);
++			my += HEIGHT(c) + gappx;
+ 		}
+ 		else {
+-			h = (m->wh - ty) / (n - i);
+-			resize(c, m->wx + mw, m->wy + ty, m->ww - mw - (2*c->bw), h - (2*c->bw), False);
+-			ty += HEIGHT(c);
++			r = n - i;
++			h = (m->wh - ty - gappx * (r - 1)) / r;
++			resize(c, m->wx + mw + g, m->wy + ty, m->ww - mw - g - (2*c->bw), h - (2*c->bw), False);
++			ty += HEIGHT(c) + gappx;
+ 		}
+ }
+ 

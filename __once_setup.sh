@@ -21,22 +21,22 @@ is_mesa=$1
 sudo xbps-install -Syu
 sudo xbps-install -Syu void-repo-nonfree 
 
-sudo xbps-install -y clang git unzip ninja cmake git rsync \
-    neovim firefox telegram-desktop thunar xcompmgr xorg-minimal xorg-fonts \
-    xf86-input-evdev xf86-input-joystick xf86-input-libinput xtools dbus elogind \
-    feh noto-fonts-ttf noto-fonts-emoji xdg-desktop-portal xdg-desktop-portal-gtk \
-    xclip xset pavucontrol pipewire redshift setxkbmap lldb \
-    libXinerama-devel libXft-devel libX11-devel pkg-config freetype-devel \
-    zip unzip flatpak 
+# for some reason, line breaking ignores the pakacges on the next line
+sudo xbps-install -y clang git unzip ninja cmake git rsync patch
+sudo xbps-install -y neovim firefox telegram-desktop xcompmgr xorg-minimal xorg-fonts
+sudo xbps-install -y xf86-input-evdev xf86-input-joystick xf86-input-libinput xtools dbus elogind
+sudo xbps-install -y feh noto-fonts-ttf noto-fonts-emoji xdg-desktop-portal xdg-desktop-portal-gtk
+sudo xbps-install -y xclip xset pavucontrol pipewire redshift setxkbmap lldb xsetroot
+sudo xbps-install -y libXinerama-devel libXft-devel libX11-devel pkg-config freetype-devel
+sudo xbps-install -y zip unzip flatpak pulseaudio playerctl fastfetch btop
 
 # xf86-input-mtrack xf86-input-synaptics
 # maybe those 2 too, if on a laptop
 
 if [[ "$1" != "-compact" ]]; then
     sudo xbps-install -Syu void-repo-multilib{,-nonfree}
-    sudo xbps-install -y qbittorrent wireguard steam lutris nitrogen \
-        libgcc-32bit libstdc++-32bit libdrm-32bit libglvnd-32bit libva-32bit \
-        obs
+    sudo xbps-install -y qbittorrent wireguard steam lutris nitrogen
+    sudo xbps-install -y libgcc-32bit libstdc++-32bit libdrm-32bit libglvnd-32bit libva-32bit 
 
     if [[ $is_mesa -eq 1 ]]; then
         sudo xbps-install mesa-dri-32bit vulkan-loader mesa-vulkan-radeon amdvlk
@@ -84,7 +84,7 @@ fc-cache -fv
 
 # flatpak
 flatpak remote-add --if-not-exists --user flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-flatpak install --user -y flathub org.videolan.VLC com.spotify.Client org.vinegarhq.Sober
+flatpak install --user -y flathub com.spotify.Client org.vinegarhq.Sober
 flatpak mask com.spotify.Client
 
 # spotify fix
