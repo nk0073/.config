@@ -1,12 +1,10 @@
 vim.opt.signcolumn = 'yes'
 
--- Add cmp_nvim_lsp capabilities settings to lspconfig
-local lspconfig_defaults = require('lspconfig').util.default_config
-lspconfig_defaults.capabilities = vim.tbl_deep_extend(
-    'force',
-    lspconfig_defaults.capabilities,
-    require('cmp_nvim_lsp').default_capabilities()
-)
+-- Add cmp_nvim_lsp capabilities settings
+vim.lsp.config('*', {
+    capabilities = require('cmp_nvim_lsp').default_capabilities(),
+    automatic_enable = true,
+})
 
 -- This is where you enable features that only work
 -- if there is a language server active in the file
@@ -54,18 +52,14 @@ vim.lsp.config("clangd", {
     -- cmd = {"clangd", "-xc-header"}
 })
 
+vim.lsp.config("rust_analyzer", {
+    enabled = false,
+})
+
 local mason_lspconfig = require('mason-lspconfig')
 
 mason_lspconfig.setup {
     PATH = "append",
-    handlers = {
-        function(server)
-            lspconfig[server].setup({
-                capabilities = lsp_capabilities,
-            })
-        end,
-        ['rust_analyzer'] = function() end,
-    }
 }
 
 vim.g.rustaceanvim = {

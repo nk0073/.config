@@ -8,6 +8,8 @@
 //
 // some other fonts that I like
 // static char *font = "IBM Plex Mono:pixelsize=20:antialias=true:autohint=true;rgba=rgb";
+// static char *font = "GoogleSansCode:pixelsize=20:antialias=true:autohint=true;rgba=rgb";
+// static char *font = "CommitMono:pixelsize=20:antialias=true:autohint=true;rgba=rgb";
 static char *font = "Miracode:pixelsize=20:antialias=true:autohint=true;rgba=rgb";
 static int borderpx = 10;
 
@@ -97,7 +99,7 @@ char *termname = "st-256color";
 unsigned int tabspaces = 8;
 
 /* bg opacity */
-float alpha = 0.88;
+float alpha = 0.80;
 
 char *xdndescchar = " !\"#$&'()*;<>?[\\]^`{|}~";
 

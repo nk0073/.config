@@ -3,6 +3,7 @@ vim.o.guicursor = "n-v-c-sm:block,i:ver25,r-cr-o:hor20"
 vim.g.nord_disable_background = true
 -- One of the favorites
 -- vim.cmd.colorscheme('vague')
+
 vim.cmd.colorscheme('gruber-darker')
 vim.o.background = 'dark'
 
@@ -12,15 +13,15 @@ vim.api.nvim_create_user_command('Dark', function()
 end, {})
 
 vim.api.nvim_create_user_command('Light', function()
-    vim.o.background = 'light'
+  vim.o.background = 'light'
   vim.cmd.colorscheme('solarized')
 end, {})
 
 vim.cmd [[
-  highlight Normal guibg=NONE ctermbg=NONE
-  highlight NormalNC guibg=NONE ctermbg=NONE
-  highlight EndOfBuffer guibg=NONE ctermbg=NONE
-  highlight LineNr guibg=NONE ctermbg=NONE
+  highlight Normal       guibg=NONE ctermbg=NONE
+  highlight NormalNC     guibg=NONE ctermbg=NONE
+  highlight EndOfBuffer  guibg=NONE ctermbg=NONE
+  highlight LineNr       guibg=NONE ctermbg=NONE
   highlight CursorLineNr guibg=NONE ctermbg=NONE
 ]]
 

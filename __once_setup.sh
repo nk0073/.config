@@ -28,7 +28,8 @@ sudo xbps-install -y xf86-input-evdev xf86-input-joystick xf86-input-libinput xt
 sudo xbps-install -y feh noto-fonts-ttf noto-fonts-emoji xdg-desktop-portal xdg-desktop-portal-gtk
 sudo xbps-install -y xclip xset pavucontrol pipewire redshift setxkbmap lldb xsetroot
 sudo xbps-install -y libXinerama-devel libXft-devel libX11-devel pkg-config freetype-devel
-sudo xbps-install -y zip unzip flatpak pulseaudio playerctl fastfetch btop
+sudo xbps-install -y zip unzip flatpak pulseaudio playerctl fastfetch btop keepassxc cronie
+sudo xbps-install -y man-pages-devel man-pages-posix noto-fonts-cjk 
 
 # xf86-input-mtrack xf86-input-synaptics
 # maybe those 2 too, if on a laptop
@@ -95,9 +96,29 @@ git clone --depth 1 https://github.com/wbthomason/packer.nvim\
  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
 
+# display manager
+sudo xbps-install -y greetd tuigreet
+sudo ln -s /etc/sv/greetd /var/service
+cat << EOF > /etc/greetd/config.toml
+[terminal]
+# The VT to run the greeter on. Can be "next", "current" or a number
+# designating the VT.
+vt = 2
 
+# The default session, also known as the greeter.
+[default_session]
+
+# `agreety` is the bundled agetty/login-lookalike. You can replace `/bin/sh`
+# with whatever you want started, such as `sway`.
+command = "tuigreet --cmd /usr/bin/startx"
+
+# The user to run the command as. The privileges this user must have depends
+# on the greeter. A graphical greeter may for example require the user to be
+# in the `video` group.
+user = "_greeter"
+EOF
 
 
 touch $CHECK_FILE_RAN # random file to check if the script has ran before
-
 exit 0
+

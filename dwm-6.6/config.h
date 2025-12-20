@@ -1,11 +1,11 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 3;        /* border pixel of windows */
+static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 10;        /* 0 means no bar */
 static const int topbar             = 0;        /* 0 means bottom bar */
-static const char *fonts[]    = { "CommitMono:size=16" };
+static const char *fonts[]    = { "CommitMono:size=17" };
 static const char dmenufont[] = "CommitMono:size=17";
 static const char col_foreground[]  = "#BCC4C9";
 static const char col_foreground2[] = "#f78ade";
@@ -45,7 +45,7 @@ static const char *const autostart[] = {
     // "nitrogen", "--set-zoom-fill", "/home/plky/.config/wallpaper/kirino.png", "--head=0", NULL,
     // "nitrogen", "--set-zoom-fill", "/home/plky/.config/wallpaper/kirino_win7.png", "--head=1", NULL,
     "nitrogen", "--restore", NULL,
-    "$HOME/.config/dwmstat.sh", NULL,
+    "/home/plky/.config/dwmstat.sh", NULL,
     "redshift", "-l", "40.7:-74.0", "-t", "6500:3600", NULL,
     "xcompmgr", NULL,
     

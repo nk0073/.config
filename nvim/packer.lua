@@ -25,8 +25,8 @@ return require('packer').startup(function(use)
         requires = { { 'nvim-lua/plenary.nvim' } }
     }
 
-    use({ 'neovim/nvim-lspconfig' })
     use({ 'hrsh7th/nvim-cmp' })
+    use({ 'neovim/nvim-lspconfig' })
     use({ 'hrsh7th/cmp-nvim-lsp' })
 
     use "williamboman/mason-lspconfig.nvim"
@@ -94,5 +94,5 @@ return require('packer').startup(function(use)
     use 'andweeb/presence.nvim'
     use 'tikhomirov/vim-glsl'
     use 'nvim-tree/nvim-tree.lua'
-    use 'lambdalisue/vim-suda' # SudaWrite 
+    use 'lambdalisue/vim-suda' -- SudaWrite 
 end)

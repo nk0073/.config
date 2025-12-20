@@ -29,6 +29,10 @@ PureRef/
 xdg-desktop-portal/
 gtk-3.0/
 gtk-4.0/
+net.imput.helium/
+vlc/
+JetBrains/
+autostart/
 
 # weechat
 weechat/sec.conf
