@@ -7,15 +7,24 @@ static const int showbar            = 10;        /* 0 means no bar */
 static const int topbar             = 0;        /* 0 means bottom bar */
 static const char *fonts[]    = { "CommitMono:size=17" };
 static const char dmenufont[] = "CommitMono:size=17";
-static const char col_foreground[]  = "#BCC4C9";
-static const char col_foreground2[] = "#f78ade";
-static const char col_background[]  = "#1A2023";
-static const char col_background2[] = "#252B2E";
-static const char col_sel_border[]  = "#dfdfd9";
-static const char col_norm_border[] = "#182221";
+
+// static const char col_foreground[]  = "#BCC4C9";
+// static const char col_foreground2[] = "#f78ade";
+// static const char col_background[]  = "#1A2023";
+// static const char col_background2[] = "#252B2E";
+// static const char col_sel_border[]  = "#dfdfd9";
+// static const char col_norm_border[] = "#182221";
+
+static const char col_foreground[]  = "#788799";
+static const char col_foreground2[] = "#9AA3B2";
+static const char col_background[] = "#e5e6e8";
+static const char col_background2[]  = "#CFCFD1";
+static const char col_sel_border[]  = "#e5e6e8";
+static const char col_norm_border[] = "#5a6a7c";
+
 static const char *colors[][3]      = {
 	/*               fg               bg               border */
-	[SchemeNorm] = { col_foreground2, col_background2, col_background2 },
+	[SchemeNorm] = { col_foreground2, col_background2, col_norm_border },
 	[SchemeSel]  = { col_foreground,  col_background,  col_sel_border  },
 };
 
@@ -24,6 +33,8 @@ static const Gap default_gap =
 
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *alttags[] = { "1;", "2;", "3;", "4;", "5;", "6;", "7;", "8;", "9;" };
+static const char *altstags[] = { "1:", "2:", "3:", "4:", "5:", "6:", "7:", "8:", "9:" };
 
 static const Rule rules[] = {
 // 	/* xprop(1):
@@ -34,6 +45,8 @@ static const Rule rules[] = {
 	{ "Firefox",  NULL,       NULL,       0,            0,           -1,        borderpx },
     { "honkers-railway-launcher", NULL, NULL, 0,        1,           -1 ,       borderpx },
     { "feh",      NULL,       NULL,       0,            1,           -1,        borderpx },
+    { "hzzz",     NULL,       NULL,       0,            1,           -1,        borderpx },
+    { "plky.popup", NULL,     NULL,       0,            1,           -1,        borderpx },
 };
 
 static const char *const autostart[] = {
@@ -85,7 +98,7 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char* dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb",
-    col_background2, "-nf", col_foreground2, "-sb", col_sel_border, "-sf", col_background,
+    col_background2, "-nf", col_foreground2, "-sb", col_background2, "-sf", col_foreground,
     "-i",
     NULL };
 static const char* termcmd[]  = { "st", NULL };

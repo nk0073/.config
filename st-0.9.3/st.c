@@ -1135,27 +1135,36 @@ kscrolldown(const Arg *a)
 void
 newterm(const Arg* a)
 {
-	switch (fork()) {
-	case -1:
-		die("fork failed: %s\n", strerror(errno));
-		break;
-	case 0:
-		switch (fork()) {
-		case -1:
-			fprintf(stderr, "fork failed: %s\n", strerror(errno));
-			_exit(1);
-			break;
-		case 0:
-			chdir_by_pid(pid);
-			execl("/proc/self/exe", argv0, NULL);
-			_exit(1);
-			break;
-		default:
-			_exit(0);
-		}
-	default:
-		wait(NULL);
-	}
+	// switch (fork()) {
+	// case -1:
+	// 	die("fork failed: %s\n", strerror(errno));
+	// 	break;
+	// case 0:
+	// 	switch (fork()) {
+	// 	case -1:
+	// 		fprintf(stderr, "fork failed: %s\n", strerror(errno));
+	// 		_exit(1);
+	// 		break;
+	// 	case 0:
+	// 		chdir_by_pid(pid);
+	// 		execl("/proc/self/exe", argv0, NULL);
+	// 		_exit(1);
+	// 		break;
+	// 	default:
+	// 		_exit(0);
+	// 	}
+	// default:
+	// 	wait(NULL);
+	// }
+
+    if (fork() == 0) {                 
+        if (fork() == 0) {             
+            chdir_by_pid(pid);         
+            execl("/proc/self/exe", argv0, NULL);
+            _exit(1);                   
+        }
+        _exit(0);                       
+    }
 }
 
 static int

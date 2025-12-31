@@ -2,7 +2,8 @@
  // "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/master/doc/json_schema.json",
  "logo": {
     "type": "file",
-    "source": "/home/plky/.config/fastfetch/ascii"
+    "source": "/home/plky/.config/fastfetch/ascii",
+    "color": {"1": "black"}
   },
   "modules": [
     "title",
@@ -13,8 +14,6 @@
     "uptime",
     "packages",
     "shell",
-    "display",
-    "de",
     "wm",
     "theme",
     "font",
@@ -22,11 +21,10 @@
     "cpu",
     "gpu",
     "memory",
-    "swap",
     "disk",
     "battery",
     "poweradapter",
     "break",
-    "colors"
+    // "colors"
   ]
 }

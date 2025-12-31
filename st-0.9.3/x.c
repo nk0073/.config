@@ -59,6 +59,7 @@ static void zoom(const Arg *);
 static void zoomabs(const Arg *);
 static void zoomreset(const Arg *);
 static void ttysend(const Arg *);
+static void switch_alpha(const Arg *);
 void kscrollup(const Arg *);
 void kscrolldown(const Arg *);
 
@@ -342,6 +343,25 @@ void
 ttysend(const Arg *arg)
 {
 	ttywrite(arg->s, strlen(arg->s), 1);
+}
+
+
+float og_alpha = -1.0f;
+void 
+switch_alpha(const Arg *arg) // takes original alpha as param
+{
+    if (og_alpha == -1.0f) {
+        og_alpha = arg->f;
+    }
+
+    if (alpha == og_alpha) {
+        alpha = 1.0f;
+    } else {
+        alpha = og_alpha;
+    }
+
+    xloadcols();
+    redraw();
 }
 
 int

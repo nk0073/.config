@@ -99,7 +99,8 @@ char *termname = "st-256color";
 unsigned int tabspaces = 8;
 
 /* bg opacity */
-float alpha = 0.80;
+#define COMPTIME_ALPHA 0.80f
+float alpha = COMPTIME_ALPHA;
 
 char *xdndescchar = " !\"#$&'()*;<>?[\\]^`{|}~";
 
@@ -205,28 +206,29 @@ static char *copyoutput[] = { "/bin/sh", "-c", "st-copyout", "externalpipe", NUL
 
 static Shortcut shortcuts[] = {
 	/* mask                 keysym          function        argument */
-	{ XK_ANY_MOD,           XK_Break,       sendbreak,      {.i =  0}          },
-	{ ControlMask,          XK_Print,       toggleprinter,  {.i =  0}          },
-	{ ShiftMask,            XK_Print,       printscreen,    {.i =  0}          },
-	{ XK_ANY_MOD,           XK_Print,       printsel,       {.i =  0}          },
-	{ TERMMOD,              XK_K,           zoom,           {.f = +1}          },
-	{ TERMMOD,              XK_J,           zoom,           {.f = -1}          },
-	{ TERMMOD,              XK_Home,        zoomreset,      {.f =  0}          },
-	{ TERMMOD,              XK_C,           clipcopy,       {.i =  0}          },
-	{ TERMMOD,              XK_V,           clippaste,      {.i =  0}          },
-	{ TERMMOD,              XK_Y,           selpaste,       {.i =  0}          },
-	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0}          },
-	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0}          },
-	// { MODKEY,               XK_l,           copyurl,        {.i =  0}          },
-	// { MODKEY|ShiftMask,     XK_L,           copyurl,        {.i =  1}          },
-    { TERMMOD,              XK_Return,      newterm,        {.i =  0}          },
-    { MODKEY | ShiftMask,   XK_K,           kscrollup,      {.f = -0.1}        },
-	{ MODKEY | ShiftMask,   XK_J,           kscrolldown,    {.f = -0.1}        },
-    { MODKEY | ShiftMask,   XK_U,           kscrollup,      {.f = -0.73}       },
-	{ MODKEY | ShiftMask,   XK_D,           kscrolldown,    {.f = -0.73}       },
-	{ MODKEY,               XK_l,           externalpipe,   {.v = openurlcmd } },
-	{ MODKEY,               XK_y,           externalpipe,   {.v = copyurlcmd } },
-	{ MODKEY,               XK_o,           externalpipe,   {.v = copyoutput } },
+	{ XK_ANY_MOD,           XK_Break,       sendbreak,      {.i =  0}             },
+	{ ControlMask,          XK_Print,       toggleprinter,  {.i =  0}             },
+	{ ShiftMask,            XK_Print,       printscreen,    {.i =  0}             },
+	{ XK_ANY_MOD,           XK_Print,       printsel,       {.i =  0}             },
+	{ TERMMOD,              XK_K,           zoom,           {.f = +1}             },
+	{ TERMMOD,              XK_J,           zoom,           {.f = -1}             },
+	{ TERMMOD,              XK_Home,        zoomreset,      {.f =  0}             },
+	{ TERMMOD,              XK_C,           clipcopy,       {.i =  0}             },
+	{ TERMMOD,              XK_V,           clippaste,      {.i =  0}             },
+	{ TERMMOD,              XK_Y,           selpaste,       {.i =  0}             },
+	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0}             },
+	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0}             },
+	// { MODKEY,               XK_l,           copyurl,        {.i =  0}             },
+	// { MODKEY|ShiftMask,     XK_L,           copyurl,        {.i =  1}             },
+    { TERMMOD,              XK_Return,      newterm,        {.i =  0}             },
+    { MODKEY | ShiftMask,   XK_K,           kscrollup,      {.f = -0.1}           },
+	{ MODKEY | ShiftMask,   XK_J,           kscrolldown,    {.f = -0.1}           },
+    { MODKEY | ShiftMask,   XK_U,           kscrollup,      {.f = -0.73}          },
+	{ MODKEY | ShiftMask,   XK_D,           kscrolldown,    {.f = -0.73}          },
+	{ MODKEY,               XK_l,           externalpipe,   {.v = openurlcmd }    },
+	{ MODKEY,               XK_y,           externalpipe,   {.v = copyurlcmd }    },
+	{ MODKEY,               XK_o,           externalpipe,   {.v = copyoutput }    },
+	{ MODKEY | ShiftMask,   XK_A,           switch_alpha,   {.f = COMPTIME_ALPHA} },
 };
 
 /*

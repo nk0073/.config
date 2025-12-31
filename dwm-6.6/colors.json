@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/plky/.config/wallpaper/b*rs.png",
+    "alpha": "100",
+    "special": {
+        "background": "#09090a",
+        "foreground": "#e5e6e8",
+        "cursor": "#e5e6e8"
+    },
+    "colors": {
+        "color0": "#09090a",
+        "color1": "#788799",
+        "color2": "#8D8F92",
+        "color3": "#979EA7",
+        "color4": "#AEAEB0",
+        "color5": "#B5BDCB",
+        "color6": "#CFCFD1",
+        "color7": "#e5e6e8",
+        "color8": "#a0a1a2",
+        "color9": "#788799",
+        "color10": "#8D8F92",
+        "color11": "#979EA7",
+        "color12": "#AEAEB0",
+        "color13": "#B5BDCB",
+        "color14": "#CFCFD1",
+        "color15": "#e5e6e8"
+    }
+}
+
