@@ -78,3 +78,4 @@ vim.g.rustaceanvim = {
     }
 }
 
+vim.keymap.set('n', '<Leader>dt', '<cmd>lua vim.cmd("RustLsp testables")<cr>', {})

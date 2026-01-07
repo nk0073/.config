@@ -29,7 +29,7 @@ sudo xbps-install -y feh noto-fonts-ttf noto-fonts-emoji xdg-desktop-portal xdg-
 sudo xbps-install -y xclip xset pavucontrol pipewire redshift setxkbmap lldb xsetroot
 sudo xbps-install -y libXinerama-devel libXft-devel libX11-devel pkg-config freetype-devel
 sudo xbps-install -y zip unzip flatpak pulseaudio playerctl fastfetch btop keepassxc cronie
-sudo xbps-install -y man-pages-devel man-pages-posix noto-fonts-cjk 
+sudo xbps-install -y man-pages-devel man-pages-posix noto-fonts-cjk libXrandr-devel libXpm-devel imlib2-devel
 
 # xf86-input-mtrack xf86-input-synaptics
 # maybe those 2 too, if on a laptop

@@ -51,6 +51,25 @@ dap.configurations.cpp = {
     },
 }
 
+dap.configurations.rust = {
+  {
+    name = "Debug Cargo (manual command)",
+    type = "lldb",
+    request = "launch",
+
+    program = "cargo",
+
+    args = function()
+      local input = vim.fn.input("cargo ", "")
+      return vim.split(input, " ", { trimempty = true })
+    end,
+
+    cwd = "${workspaceFolder}",
+    runInTerminal = true,
+    stopOnEntry = false,
+  },
+}
+
 vim.keymap.set('n', '<F5>', function() require('dap').continue() end)
 vim.keymap.set('n', '<F10>', function() require('dap').step_over() end)
 vim.keymap.set('n', '<F11>', function() require('dap').step_into() end)

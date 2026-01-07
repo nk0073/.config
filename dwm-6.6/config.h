@@ -115,11 +115,13 @@ static const char *volmute[] = { "pactl", "set-sink-mute",   "@DEFAULT_SINK@", "
 static const char *mplaypause[] = { "playerctl", "play-pause", NULL };
 static const char *mnext[]      = { "playerctl", "next",       NULL };
 static const char *mprev[]      = { "playerctl", "previous",   NULL };
+static const char *slock[] = {"slock", NULL};
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
+    { MODKEY|ShiftMask,             XK_l,      spawn,          {.v = slock } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },

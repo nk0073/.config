@@ -10,7 +10,7 @@
 // static char *font = "IBM Plex Mono:pixelsize=20:antialias=true:autohint=true;rgba=rgb";
 // static char *font = "GoogleSansCode:pixelsize=20:antialias=true:autohint=true;rgba=rgb";
 // static char *font = "CommitMono:pixelsize=20:antialias=true:autohint=true;rgba=rgb";
-static char *font = "Miracode:pixelsize=20:antialias=true:autohint=true;rgba=rgb";
+static char *font = "Miracode:pixelsize=23:antialias=true:autohint=true;rgba=rgb";
 static int borderpx = 10;
 
 /*
