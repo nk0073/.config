@@ -33,6 +33,11 @@ net.imput.helium/
 vlc/
 JetBrains/
 autostart/
+mime*
+xdg-desktop-portal/
+wal/
+mpv/
+fontforge/
 
 # weechat
 weechat/sec.conf
