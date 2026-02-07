@@ -1,0 +1,10 @@
+Could not connect to PipeWire
+Could not connect to PipeWire
+Could not connect to PipeWire
+Could not connect to PipeWire
+Could not connect to PipeWire
+E 18:20:11.107478             mod.rt ../src/modules/module-rt.c:294:pw_rtkit_bus_get: Failed to connect to session bus: Failed to connect to socket /tmp/dbus-UE5DDQgZpz: No such file or directory
+Could not connect to PipeWire
+XOpenDisplay: Failed to open display
+XIO:  fatal IO error 104 (Connection reset by peer) on X server ":0"
+      after 21641 requests (6 known processed) with 0 events remaining.

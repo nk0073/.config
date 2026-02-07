@@ -106,6 +106,10 @@ cd $(mktemp -d)
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/0xProto.zip
 unzip -d ~/.local/share/fonts 0xProto.zip
 
+cd $(mktemp -d)
+wget https://github.com/madmalik/mononoki/releases/download/1.6/mononoki.zip
+unzip -d ~/.local/share/fonts mononoki.zip
+
 fc-cache -fv
 
 

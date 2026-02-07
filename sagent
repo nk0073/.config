@@ -1,27 +1,32 @@
-#!/bin/bash
+#!/bin/sh
 
 # script that starts an ssh-agent for the session. 
-# add source sagent to .bashrc for it to start automatically
+# add `. sagent` to .bashrc (or similar)
+#  for it to work on every new terminal
 # `sagent add` to add a key (id_rsa)
 # `sagent stop` clears it
 
 var_file="/tmp/ssh-agent-vars"
 
 if [ ! -e "$var_file" ]; then
-    ssh-agent -s > $var_file 
+    ssh-agent -s > "$var_file"
 fi
 
-eval $(cat $var_file) &> /dev/null
+eval "$(cat "$var_file")" >/dev/null 2>&1
 
 if [ $# -eq 1 ]; then
     case $1 in
         add)
-            ssh-add $HOME/.ssh/id_rsa
+            ssh-add "$HOME/.ssh/id_rsa"
             ;;
 
         stop)
-            kill $SSH_AGENT_PID &> /dev/null
-            shred -uzn7 $var_file
+            kill "$SSH_AGENT_PID" >/dev/null 2>&1
+            if command -v gshred >/dev/null 2>&1; then
+                gshred -uzn8 "$var_file"
+            else
+                shred -uzn8 "$var_file"
+            fi
             unset SSH_AUTH_SOCK
             unset SSH_AGENT_PID
             ;;

@@ -1,11 +1,11 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 2;        /* border pixel of windows */
+static const unsigned int borderpx  = 3;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 10;        /* 0 means no bar */
 static const int topbar             = 0;        /* 0 means bottom bar */
-static const char *fonts[]    = { "CommitMono:size=17" };
+static const char *fonts[]    = { "0xProto:size=17" };
 static const char dmenufont[] = "CommitMono:size=17";
 
 // static const char col_foreground[]  = "#BCC4C9";
@@ -16,10 +16,10 @@ static const char dmenufont[] = "CommitMono:size=17";
 // static const char col_norm_border[] = "#182221";
 
 static const char col_foreground[]  = "#788799";
-static const char col_foreground2[] = "#9AA3B2";
-static const char col_background[] = "#e5e6e8";
-static const char col_background2[]  = "#CFCFD1";
-static const char col_sel_border[]  = "#e5e6e8";
+static const char col_foreground2[] = "#6A7587";  // was #8792A4
+static const char col_background[] =  "#e5e6e8";
+static const char col_background2[] = "#D0D0D2";  // was #CFCFD1
+static const char col_sel_border[]  = "#f78ade";
 static const char col_norm_border[] = "#5a6a7c";
 
 static const char *colors[][3]      = {
@@ -58,8 +58,8 @@ static const char *const autostart[] = {
     // "nitrogen", "--set-zoom-fill", "/home/plky/.config/wallpaper/kirino.png", "--head=0", NULL,
     // "nitrogen", "--set-zoom-fill", "/home/plky/.config/wallpaper/kirino_win7.png", "--head=1", NULL,
     "nitrogen", "--restore", NULL,
-    "/home/plky/.config/dwmstat.sh", NULL,
-    "redshift", "-l", "40.7:-74.0", "-t", "6500:3600", NULL,
+    "slstatus", NULL,
+    "redshift", "-l", "40.7:-74.0", "-t", "6800:2800", NULL,
     "xcompmgr", NULL,
     
     // screen blank/off after 1h 

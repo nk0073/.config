@@ -5,12 +5,15 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-//
+
+#define _FONTSIZE "20"
+
 // some other fonts that I like
-// static char *font = "IBM Plex Mono:pixelsize=23:antialias=true:autohint=true;rgba=rgb";
-static char *font = "GoogleSansCode:pixelsize=23:antialias=true:autohint=true;rgba=rgb";
-// static char *font = "CommitMono:pixelsize=23:antialias=true:autohint=true;rgba=rgb";
-// static char *font = "Miracode:pixelsize=23:antialias=true:autohint=true;rgba=rgb";
+// static char *font = "IBM Plex Mono:pixelsize=" _FONTSIZE ":antialias=true:autohint=true;rgba=rgb";
+// static char *font = "GoogleSansCode:pixelsize=" _FONTSIZE ":antialias=true:autohint=true;rgba=rgb";
+// static char *font = "CommitMonoc2ny:pixelsize=" _FONTSIZE ":antialias=true:autohint=true;rgba=rgb";
+static char *font = "mononoki:pixelsize=" _FONTSIZE ":antialias=true:autohint=true;rgba=rgb";
+// static char *font = "Miracode:pixelsize=" _FONTSIZE ":antialias=true:autohint=true;rgba=rgb";
 static int borderpx = 10;
 
 /*

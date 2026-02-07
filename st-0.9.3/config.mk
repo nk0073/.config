@@ -7,8 +7,11 @@ VERSION = 0.9.3
 PREFIX = /usr/local
 MANPREFIX = $(PREFIX)/share/man
 
-X11INC = /usr/X11R6/include
-X11LIB = /usr/X11R6/lib
+# X11INC = /usr/X11R6/include
+# X11LIB = /usr/X11R6/lib
+
+X11CFLAGS != pkg-config --cflags x11
+X11LIBS   != pkg-config --libs x11
 
 PKG_CONFIG = pkg-config
 
