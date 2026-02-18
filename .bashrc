@@ -18,6 +18,13 @@ alias rms="shred -uzn8"
 alias ccp="xclip -selection clipboard" # stands for clipboard copy
 alias du.="du -hs ./* | sort -rh"
 alias cdtmp="cd \$(mktemp -d)"
+alias pullfreebsdclangformat="wget https://raw.githubusercontent.com/freebsd/freebsd-src/refs/heads/main/.clang-format"
+alias man="MANPAGER=\"nvim +Man!\" man"
+alias less="less --incsearch"
+alias faggot="exit"
+
+# plasma rendering often breaks after sleeping with an nvidia gpu (fuck nvidia)
+alias restartplasma="kquitapp6 plasmashell && kstart plasmashell"
 
 PS1='[\u@\h \W]\$ '
 # . "$HOME/.cargo/env"

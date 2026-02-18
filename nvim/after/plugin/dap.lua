@@ -1,74 +1,72 @@
 local dap = require('dap')
+
 dap.adapters.lldb = {
     type = 'executable',
-    command = '/usr/bin/lldb-dap',
+    command = '/usr/sbin/lldb-dap',
+    name = 'lldb',
 }
 
 dap.configurations.c = {
     {
+        name = 'Launch',
         type = 'lldb',
         request = 'launch',
-        name = "Launch file",
         program = function()
-            return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+          return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
         end,
-    },
-    {
-        name = "Attach to process",
-        type = "lldb",
-        request = "attach",
-
-        --original fallback
-        -- pid = require('dap.utils').pick_process,
-
-        pid = function()
-          return tonumber(vim.fn.input('PID: '))
-        end,
-
-
-        -- fix this
-        -- pid = (function()
-        --     local str = vim.fn.input('Use PID or see process list (l): ')
-        --     if str == "l" or str == "" then
-        --         return require('dap.utils').pick_process
-        --     else
-        --         return function()
-        --             return tonumber(vim.fn.input('PID: '))
-        --         end
-        --     end
-        -- end)()
+        cwd = '${workspaceFolder}',
+        stopOnEntry = false,
+        args = {},
     },
 }
 
-dap.configurations.cpp = {
-    {
-        type = 'lldb',
-        request = 'launch',
-        name = "Launch file",
-        program = function()
-            return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
-        end,
-    },
-}
+dap.configurations.cpp = dap.configurations.c
 
-dap.configurations.rust = {
-  {
-    name = "Debug Cargo (manual command)",
-    type = "lldb",
-    request = "launch",
 
-    program = "cargo",
+    -- {
+    --     name = "Attach to process",
+    --     type = "lldb",
+    --     request = "attach",
+    --
+    --     --original fallback
+    --     -- pid = require('dap.utils').pick_process,
+    --
+    --     pid = function()
+    --       return tonumber(vim.fn.input('PID: '))
+    --     end,
+    --
+    --
+    --     -- fix this
+    --     -- pid = (function()
+    --     --     local str = vim.fn.input('Use PID or see process list (l): ')
+    --     --     if str == "l" or str == "" then
+    --     --         return require('dap.utils').pick_process
+    --     --     else
+    --     --         return function()
+    --     --             return tonumber(vim.fn.input('PID: '))
+    --     --         end
+    --     --     end
+    --     -- end)()
+    -- },
 
-    args = function()
-      local input = vim.fn.input("cargo ", "")
-      return vim.split(input, " ", { trimempty = true })
-    end,
-
-    cwd = "${workspaceFolder}",
-    runInTerminal = true,
-    stopOnEntry = false,
-  },
-}
+-- dap.configurations.rust = {
+--   {
+--     name = "Debug Cargo (manual command)",
+--     type = "lldb",
+--     request = "launch",
+--
+--     program = "cargo",
+--
+--     args = function()
+--       local input = vim.fn.input("cargo ", "")
+--       return vim.split(input, " ", { trimempty = true })
+--     end,
+--
+--     cwd = "${workspaceFolder}",
+--     runInTerminal = true,
+--     stopOnEntry = false,
+--   },
+-- }
 
 vim.keymap.set('n', '<F5>', function() require('dap').continue() end)
 vim.keymap.set('n', '<F10>', function() require('dap').step_over() end)

@@ -1,30 +1,19 @@
 {
- // "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/master/doc/json_schema.json",
- "logo": {
-    "type": "file",
-    "source": "/home/plky/.config/fastfetch/ascii",
-    "color": {"1": "black"}
+  "logo": {
+    "type": "sixel",
+    "source": "/home/plky/Pictures/leg.jpeg",
+    "height": 12,
+    "padding": { "right": 2 }
   },
   "modules": [
-    "title",
-    "separator",
-    "os",
-    "host",
-    "kernel",
-    "uptime",
-    "packages",
-    "shell",
-    "wm",
-    "theme",
-    "font",
-    "terminal",
-    "cpu",
-    "gpu",
-    "memory",
-    "disk",
-    "battery",
-    "poweradapter",
-    "break",
-    // "colors"
+    { "type": "os",      "key": "os",   "keyColor": "yellow" },
+    { "type": "kernel",  "key": "ker",  "keyColor": "green" },
+    { "type": "packages","key": "pkgs", "keyColor": "cyan" },
+    { "type": "shell",   "key": "sh",   "keyColor": "blue" },
+    { "type": "wm",      "key": "wm",   "keyColor": "magenta" },
+    { "type": "uptime",  "key": "up",   "keyColor": "green" },
+    { "type": "cpu",     "key": "cpu",  "keyColor": "red" },
+    { "type": "memory",  "key": "ram",  "keyColor": "yellow" },
+    { "type": "disk",    "key": "disk", "keyColor": "cyan" }
   ]
 }

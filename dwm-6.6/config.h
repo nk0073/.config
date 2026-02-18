@@ -59,7 +59,7 @@ static const char *const autostart[] = {
     // "nitrogen", "--set-zoom-fill", "/home/plky/.config/wallpaper/kirino_win7.png", "--head=1", NULL,
     "nitrogen", "--restore", NULL,
     "slstatus", NULL,
-    "redshift", "-l", "40.7:-74.0", "-t", "6800:2800", NULL,
+    // "redshift", "-l", "40.7:-74.0", "-t", "6800:2800", NULL,
     "xcompmgr", NULL,
     
     // screen blank/off after 1h 
