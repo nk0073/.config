@@ -18,7 +18,8 @@
 // static char *font = "IBM Plex Mono:pixelsize=" _FONTSIZE ":antialias=true:autohint=true;rgba=rgb";
 // static char *font = "GoogleSansCode:pixelsize=" _FONTSIZE ":antialias=true:autohint=true;rgba=rgb";
 // static char *font = "CommitMonoc2ny:pixelsize=" _FONTSIZE ":antialias=true:autohint=true;rgba=rgb";
-static char *font = "mononoki:pixelsize=" _FONTSIZE ":antialias=true:autohint=true;rgba=rgb";
+// static char *font = "mononoki:pixelsize=" _FONTSIZE ":antialias=true:autohint=true;rgba=rgb";
+static char *font = "ComicShannsMonoNerdFont:pixelsize=" _FONTSIZE ":antialias=true:autohint=true;rgba=rgb";
 // static char *font = "Miracode:pixelsize=" _FONTSIZE ":antialias=true:autohint=true;rgba=rgb";
 
 #if FONT2_PATCH
@@ -207,7 +208,7 @@ static const char *colorname[] = {
 	"red3",
 	"green3",
 	"yellow3",
-	"blue2",
+    "#3060ff",
 	"magenta3",
 	"cyan3",
 	"gray90",
@@ -230,7 +231,6 @@ static const char *colorname[] = {
 	"#000000", /* 258 -> bg */
 	"#e5e5e5", /* 259 -> fg */
 };
-
 
 /*
  * Default colors (colorname index)
@@ -595,7 +595,6 @@ static Key key[] = {
 	#else
 	{ XK_KP_Delete,     XK_ANY_MOD,     "\033[P",       -1,    0},
 	#endif // DELKEY_PATCH
-	{ XK_KP_Delete,     XK_ANY_MOD,     "\033[3~",      +1,    0},
 	{ XK_KP_Multiply,   XK_ANY_MOD,     "\033Oj",       +2,    0},
 	{ XK_KP_Add,        XK_ANY_MOD,     "\033Ok",       +2,    0},
 	{ XK_KP_Enter,      XK_ANY_MOD,     "\033OM",       +2,    0},
@@ -670,6 +669,7 @@ static Key key[] = {
 	{ XK_Delete,        XK_ANY_MOD,     "\033[3~",      +1,    0},
 	{ XK_BackSpace,     XK_NO_MOD,      "\177",          0,    0},
 	{ XK_BackSpace,     Mod1Mask,       "\033\177",      0,    0},
+    { XK_BackSpace,     ControlMask,    "\x17",          0,    0},  
 	{ XK_Home,          ShiftMask,      "\033[2J",       0,   -1},
 	{ XK_Home,          ShiftMask,      "\033[1;2H",     0,   +1},
 	{ XK_Home,          XK_ANY_MOD,     "\033[H",        0,   -1},

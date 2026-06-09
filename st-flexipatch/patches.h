@@ -192,7 +192,7 @@
  * that are available to GUI applications.
  * https://st.suckless.org/patches/fix_keyboard_input/
  */
-#define FIXKEYBOARDINPUT_PATCH 1
+#define FIXKEYBOARDINPUT_PATCH 0
 
 /* This patch allows you to add spare font besides the default. Some glyphs can be not present in
  * the default font. For this glyphs st uses font-config and try to find them in font cache first.
@@ -348,7 +348,7 @@
  * in the terminal.
  * https://st.suckless.org/patches/relativeborder/
  */
-#define RELATIVEBORDER_PATCH 1
+#define RELATIVEBORDER_PATCH 0
 
 /* This patch allows you to right-click on some selected text to send it to the plumbing
  * program of choice, e.g. open a file, view an image, open a URL.

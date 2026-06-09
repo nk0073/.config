@@ -7,7 +7,7 @@ VERSION = 0.9.3
 PREFIX = /usr/local
 MANPREFIX = $(PREFIX)/share/man
 ICONPREFIX = $(PREFIX)/share/pixmaps
-ICONNAME = st.png
+ICONNAME = st.ff
 
 X11INC = /usr/X11R6/include
 X11LIB = /usr/X11R6/lib

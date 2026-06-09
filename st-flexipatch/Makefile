@@ -47,6 +47,8 @@ install: st
 	tic -sx st.info
 	mkdir -p $(DESTDIR)$(PREFIX)/share/applications # desktop-entry patch
 	test -f ${DESTDIR}${PREFIX}/share/applications/st.desktop || cp -n st.desktop $(DESTDIR)$(PREFIX)/share/applications # desktop-entry patch
+	mkdir -p /usr/local/share/pixmaps/
+	cp -f st.ff /usr/local/share/pixmaps/st.ff
 	@echo Please see the README file regarding the terminfo entry of st.
 
 uninstall:

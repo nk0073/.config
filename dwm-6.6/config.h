@@ -4,23 +4,24 @@
 static const unsigned int borderpx  = 3;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 10;        /* 0 means no bar */
-static const int topbar             = 0;        /* 0 means bottom bar */
-static const char *fonts[]    = { "0xProto:size=17" };
+static const int topbar             = 1;        /* 0 means bottom bar */
+static const char *fonts[]    = { "0xProto:size=15" };
 static const char dmenufont[] = "CommitMono:size=17";
 
-// static const char col_foreground[]  = "#BCC4C9";
-// static const char col_foreground2[] = "#f78ade";
-// static const char col_background[]  = "#1A2023";
-// static const char col_background2[] = "#252B2E";
-// static const char col_sel_border[]  = "#dfdfd9";
-// static const char col_norm_border[] = "#182221";
+/* white & gray */
+// static const char col_foreground[]  = "#2E3A4A";  
+// static const char col_foreground2[] = "#4A586B"; 
+// static const char col_background[]  = "#e5e6e8";
+// static const char col_background2[] = "#D0D0D2";
+// static const char col_sel_border[]  = "#f78ade";
+// static const char col_norm_border[] = "#5a6a7c";
 
-static const char col_foreground[]  = "#788799";
-static const char col_foreground2[] = "#6A7587";  // was #8792A4
-static const char col_background[] =  "#e5e6e8";
-static const char col_background2[] = "#D0D0D2";  // was #CFCFD1
-static const char col_sel_border[]  = "#f78ade";
-static const char col_norm_border[] = "#5a6a7c";
+static const char col_foreground[]  = "#26323A";  // deep blue-charcoal
+static const char col_foreground2[] = "#4F5D53";  // muted green-gray
+static const char col_background[]  = "#D8CCA3";  // warm sunflower sand
+static const char col_background2[] = "#BFB48B";  // darker tan/sage gray
+static const char col_sel_border[]  = "#F08A5D";  // soft coral-orange active border
+static const char col_norm_border[] = "#6F8068";  // muted leaf green border
 
 static const char *colors[][3]      = {
 	/*               fg               bg               border */
@@ -51,21 +52,24 @@ static const Rule rules[] = {
 
 static const char *const autostart[] = {
     "xset", "-b",           NULL,
-    "pipewire", NULL,
+    // "pipewire", NULL,
     "setxkbmap", "-layout", "us,ru", "-option", "grp:ctrls_toggle", NULL,
     // uhhh this works just for 1 of the screens so set 
     // the wallpaper in nitrogen gui (yuck) and then nitrogen --restore
     // "nitrogen", "--set-zoom-fill", "/home/plky/.config/wallpaper/kirino.png", "--head=0", NULL,
     // "nitrogen", "--set-zoom-fill", "/home/plky/.config/wallpaper/kirino_win7.png", "--head=1", NULL,
     "nitrogen", "--restore", NULL,
-    "slstatus", NULL,
+    // "slstatus", NULL,
     // "redshift", "-l", "40.7:-74.0", "-t", "6800:2800", NULL,
-    "xcompmgr", NULL,
+    // "xcompmgr", NULL,
     
     // screen blank/off after 1h 
     "xset", "s", "3600", "3600", NULL,
     "xset", "+dpms", NULL,
     "xset", "dpms", "3600", "3600", "3600", NULL,
+
+    /* needs to be here so flameshot remembers the clipboard */
+    "flameshot", NULL,
 
     NULL
 };
@@ -102,16 +106,26 @@ static const char* dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
     "-i",
     NULL };
 static const char* termcmd[]  = { "st", NULL };
-static const char* screenshot[] = { "flameshot", "gui", NULL };
+// static const char* screenshot[] = { "flameshot", "gui", NULL };
+// static const char *screenshot[] = {
+// 	"sh", "-c",
+// 	"pkill flameshot && flameshot gui -r | xclip -selection clipboard -t image/png -i",
+// 	NULL
+// };
 static const char* screenshot_full[] = { "flameshot", "full", "--clipboard", NULL };
-// static const char* screenshot[] = { "/home/plky/.config/screenshot.sh", NULL };
 
 // media buttons
 #include <X11/XF86keysym.h>
 #include "movestack.c"
-static const char *volup[]   = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%", NULL };
-static const char *voldown[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%", NULL };
-static const char *volmute[] = { "pactl", "set-sink-mute",   "@DEFAULT_SINK@", "toggle", NULL };
+/* Pipewire */
+static const char *volup[]   = { "wpctl", "set-volume", "@DEFAULT_AUDIO_SINK@", "5%+", NULL };
+static const char *voldown[] = { "wpctl", "set-volume", "@DEFAULT_AUDIO_SINK@", "5%-", NULL };
+static const char *volmute[] = { "wpctl", "set-mute",   "@DEFAULT_AUDIO_SINK@", "toggle", NULL };
+
+// PulseAudio
+// static const char *volup[]   = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%", NULL };
+// static const char *voldown[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%", NULL };
+// static const char *volmute[] = { "pactl", "set-sink-mute",   "@DEFAULT_SINK@", "toggle", NULL };
 static const char *mplaypause[] = { "playerctl", "play-pause", NULL };
 static const char *mnext[]      = { "playerctl", "next",       NULL };
 static const char *mprev[]      = { "playerctl", "previous",   NULL };
@@ -161,7 +175,10 @@ static const Key keys[] = {
     { 0, XF86XK_AudioPlay,                     spawn,         { .v = mplaypause } },
     { 0, XF86XK_AudioNext,                     spawn,         { .v = mnext } },
     { 0, XF86XK_AudioPrev,                     spawn,         { .v = mprev } },
-    { 0,                            XK_Print,  spawn,         { .v = screenshot } },
+    /* Top one works but only for clipboard, the bottom one is the normal one */
+    { 0,                            XK_Print,  spawn,         SHCMD("pkill -i flameshot ; flameshot gui -r | xclip -selection clipboard -t image/png -i") },
+    // { 0,                            XK_Print,  spawn,         SHCMD("flameshot gui") },
+
     { MODKEY,                       XK_Print,  spawn,         { .v = screenshot_full } },
 	{ MODKEY|ShiftMask,             XK_minus,  setgaps,        {.i = GAP_RESET } },
 	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = GAP_TOGGLE} },

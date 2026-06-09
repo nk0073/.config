@@ -1,9 +1,9 @@
 {
   "logo": {
     "type": "sixel",
-    "source": "/home/plky/Pictures/leg.jpeg",
+    "source": "/home/plky/Pictures/furina.gif",
     "height": 12,
-    "padding": { "right": 2, "bottom": 1}
+    "padding": { "right": 2 }
   },
   "modules": [
       "break",

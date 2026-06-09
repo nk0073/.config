@@ -22,22 +22,22 @@ alias pullfreebsdclangformat="wget https://raw.githubusercontent.com/freebsd/fre
 alias man="MANPAGER=\"nvim +Man!\" man"
 alias less="less --incsearch"
 alias faggot="exit"
+alias nohup='nohup > "${TMPDIR:-/tmp}/nohup.$USER.$$.out" 2>&1'
 
 # plasma rendering often breaks after sleeping with an nvidia gpu (fuck nvidia)
-alias restartplasma="kquitapp6 plasmashell && kstart plasmashell"
+alias restartplasma="nohup sh -c 'kquitapp6 plasmashell && kstart plasmashell' >/dev/null 2>&1"
 
 PS1='[\u@\h \W]\$ '
 # . "$HOME/.cargo/env"
 
 p="/home/plky/projects"
-rpi="plky@192.168.4.10"
+export rpi="admin@192.168.4.10"
 
 export JAVA_HOME=/usr/lib/jvm/default-jdk
 export EDITOR=nvim
 export VISUAL=nvim
 
 . sagent
-
 
 # cat << EOF
 # ⠀⢀⣒⠒⠆⠤⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
