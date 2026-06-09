@@ -75,6 +75,7 @@ cmp.setup({
     },
 })
 
+-- make default lsp binds work
 vim.lsp.config('*', {
     capabilities = require('cmp_nvim_lsp').default_capabilities(),
 })
@@ -92,7 +93,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 vim.lsp.config('lua_ls', {
-    settings = { Lua = { diagnostics = { globals = { 'vim' }, }, },},
+    settings = { Lua = { diagnostics = { globals = { 'vim' }, }, }, },
 })
 
 vim.lsp.enable({
@@ -147,7 +148,7 @@ dap.configurations.gdscript = {
 }
 
 -- dap-ui
-local dapui = require('dapui') ; dapui.setup()
+local dapui = require('dapui'); dapui.setup()
 vim.keymap.set('n', '<leader>du', dapui.toggle)
 
 -- harpoon
@@ -231,13 +232,13 @@ vim.keymap.set('x', '<C-p>', '"+p', { noremap = true, silent = true })
 vim.keymap.set("n", "<Leader>tt", ":split | resize 10 | terminal")
 vim.keymap.set("n", "q:", "<nop>", { noremap = true, silent = true }) -- ctrl + f is better
 
-vim.keymap.set('n', '<C-Up>',    '<cmd>resize +2<CR>')
-vim.keymap.set('n', '<C-Down>',  '<cmd>resize -2<CR>')
-vim.keymap.set('n', '<C-Left>',  '<cmd>vertical resize -2<CR>')
+vim.keymap.set('n', '<C-Up>', '<cmd>resize +2<CR>')
+vim.keymap.set('n', '<C-Down>', '<cmd>resize -2<CR>')
+vim.keymap.set('n', '<C-Left>', '<cmd>vertical resize -2<CR>')
 vim.keymap.set('n', '<C-Right>', '<cmd>vertical resize +2<CR>')
-vim.keymap.set('n', '<C-k>',    '<cmd>resize +6<CR>')
-vim.keymap.set('n', '<C-j>',  '<cmd>resize -6<CR>')
-vim.keymap.set('n', '<C-h>',  '<cmd>vertical resize -6<CR>')
+vim.keymap.set('n', '<C-k>', '<cmd>resize +6<CR>')
+vim.keymap.set('n', '<C-j>', '<cmd>resize -6<CR>')
+vim.keymap.set('n', '<C-h>', '<cmd>vertical resize -6<CR>')
 vim.keymap.set('n', '<C-l>', '<cmd>vertical resize +6<CR>')
 
 -- Options
