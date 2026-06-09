@@ -5,6 +5,7 @@ not properly updated. Mostly it's just suckless tools and dependencies for them 
 are fonts and apps I may not even use.
 
 
+
 NVIDIA
 ```sh
 sudo xbps-install -Sy nvidia nvidia-libs nvidia-libs-32bit
