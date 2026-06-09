@@ -44,11 +44,17 @@ require("nvim-autopairs").setup({})
 -- treesitter
 require('tree-sitter-manager').setup({
     ensure_installed = {
+        'c',
+        'lua',
         'cpp',
         'rust',
         'gdscript',
+        'gdshader',
+        'markdown',
+        'vim',
     },
     highlight = true,
+    auto_install = true,
 })
 
 -- lsp
@@ -56,15 +62,23 @@ require('tree-sitter-manager').setup({
 -- gri for implementation ; gd for declaration ; gD for definition ;
 -- grn for rename ; grt for type definition ; grr for references ;
 -- gra for code action ; <C-w>d for diagnostics ;
--- <C-s> in insert for signature help 
-vim.lsp.enable({
-    'clangd',
-    'gdscript',
-    "lua_ls",
+-- <C-s> in insert for signature help
+local cmp = require('cmp')
+cmp.setup({
+    mapping = cmp.mapping.preset.insert({
+        ['<C-Space>'] = cmp.mapping.complete(),
+        ['<C-e>'] = cmp.mapping.abort(),
+        ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+    }),
+    sources = {
+        { name = 'nvim_lsp' },
+    },
 })
+
 vim.lsp.config('*', {
     capabilities = require('cmp_nvim_lsp').default_capabilities(),
 })
+
 vim.api.nvim_create_autocmd('LspAttach', {
     callback = function(event)
         local opts = { buffer = event.buf }
@@ -74,12 +88,27 @@ vim.api.nvim_create_autocmd('LspAttach', {
         vim.keymap.set({ 'n', 'x' }, '<F3>', function()
             vim.lsp.buf.format({ async = true })
         end, opts)
-
     end,
+})
+
+vim.lsp.config('lua_ls', {
+    settings = { Lua = { diagnostics = { globals = { 'vim' }, }, },},
+})
+
+vim.lsp.enable({
+    'clangd',
+    'gdscript',
+    "lua_ls",
 })
 
 -- dap
 local dap = require('dap')
+vim.keymap.set('n', '<F5>', dap.continue)
+vim.keymap.set('n', '<F10>', dap.step_over)
+vim.keymap.set('n', '<F11>', dap.step_into)
+vim.keymap.set('n', '<F12>', dap.step_out)
+vim.keymap.set('n', '<Leader>b', dap.toggle_breakpoint)
+
 dap.adapters.lldb = {
     type = 'executable',
     command = '/usr/sbin/lldb-dap',
@@ -92,7 +121,7 @@ dap.configurations.c = {
         type = 'lldb',
         request = 'launch',
         program = function()
-          return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+            return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
         end,
         cwd = '${workspaceFolder}',
         stopOnEntry = false,
@@ -101,27 +130,38 @@ dap.configurations.c = {
 }
 dap.configurations.cpp = dap.configurations.c
 
-vim.keymap.set('n', '<F5>', function() require('dap').continue() end)
-vim.keymap.set('n', '<F10>', function() require('dap').step_over() end)
-vim.keymap.set('n', '<F11>', function() require('dap').step_into() end)
-vim.keymap.set('n', '<F12>', function() require('dap').step_out() end)
-vim.keymap.set('n', '<Leader>b', function() require('dap').toggle_breakpoint() end)
+dap.adapters.godot = {
+    type = 'server',
+    host = '127.0.0.1',
+    port = 6006,
+}
+
+dap.configurations.gdscript = {
+    {
+        type = 'godot',
+        request = 'launch',
+        name = 'Launch scene',
+        project = '${workspaceFolder}',
+        launch_scene = true,
+    },
+}
 
 -- dap-ui
-local dapui = require('dapui') -- setup later
+local dapui = require('dapui') ; dapui.setup()
+vim.keymap.set('n', '<leader>du', dapui.toggle)
 
 -- harpoon
-local mark = require('harpoon.mark')
-local ui = require('harpoon.ui')
+local haproon_mark = require('harpoon.mark')
+local harpoon_ui = require('harpoon.ui')
 
-vim.keymap.set('n', '<leader>a', mark.add_file)
-vim.keymap.set('n', '<C-e>', ui.toggle_quick_menu)
+vim.keymap.set('n', '<leader>a', haproon_mark.add_file)
+vim.keymap.set('n', '<C-e>', harpoon_ui.toggle_quick_menu)
 
-vim.keymap.set('n', '<C-h>', function() ui.nav_file(1) end)
-vim.keymap.set('n', '<C-t>', function() ui.nav_file(2) end)
-vim.keymap.set('n', '<C-n>', function() ui.nav_file(3) end)
-vim.keymap.set('n', '<C-s>', function() ui.nav_file(4) end)
-vim.keymap.set('n', '<C-z>', function() ui.nav_file(5) end)
+vim.keymap.set('n', '<C-h>', function() harpoon_ui.nav_file(1) end)
+vim.keymap.set('n', '<C-t>', function() harpoon_ui.nav_file(2) end)
+vim.keymap.set('n', '<C-n>', function() harpoon_ui.nav_file(3) end)
+vim.keymap.set('n', '<C-s>', function() harpoon_ui.nav_file(4) end)
+vim.keymap.set('n', '<C-z>', function() harpoon_ui.nav_file(5) end)
 
 -- nvim-tree
 require('nvim-tree').setup({
@@ -152,12 +192,10 @@ require('nvim-tree').setup({
 vim.keymap.set('n', '<leader>pv', '<cmd>NvimTreeToggle<CR>', { silent = true })
 
 -- telescope
-local builtin = require('telescope.builtin')
-
-vim.keymap.set('n', '<leader>pf', builtin.find_files, {})
-
+local telescope = require('telescope.builtin')
+vim.keymap.set('n', '<leader>pf', telescope.find_files, {})
 vim.keymap.set('n', '<leader>pw', function()
-    builtin.grep_string({ search = vim.fn.input('Grep > ') })
+    telescope.grep_string({ search = vim.fn.input('Grep > ') })
 end)
 
 
@@ -177,7 +215,7 @@ vim.cmd [[
 ]]
 
 
--- Binds
+-- Default binds
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
 vim.keymap.set('n', '<C-u>', '<C-u>zz')
 
@@ -193,6 +231,14 @@ vim.keymap.set('x', '<C-p>', '"+p', { noremap = true, silent = true })
 vim.keymap.set("n", "<Leader>tt", ":split | resize 10 | terminal")
 vim.keymap.set("n", "q:", "<nop>", { noremap = true, silent = true }) -- ctrl + f is better
 
+vim.keymap.set('n', '<C-Up>',    '<cmd>resize +2<CR>')
+vim.keymap.set('n', '<C-Down>',  '<cmd>resize -2<CR>')
+vim.keymap.set('n', '<C-Left>',  '<cmd>vertical resize -2<CR>')
+vim.keymap.set('n', '<C-Right>', '<cmd>vertical resize +2<CR>')
+vim.keymap.set('n', '<C-k>',    '<cmd>resize +6<CR>')
+vim.keymap.set('n', '<C-j>',  '<cmd>resize -6<CR>')
+vim.keymap.set('n', '<C-h>',  '<cmd>vertical resize -6<CR>')
+vim.keymap.set('n', '<C-l>', '<cmd>vertical resize +6<CR>')
 
 -- Options
 vim.o.nu = true
@@ -215,3 +261,13 @@ vim.o.scrolloff = 8
 vim.o.signcolumn = 'yes'
 
 vim.o.updatetime = 250
+
+-- Misc
+-- listen to godothost if in a gd project
+-- listen to godothost if in a gd project
+local project = vim.fn.getcwd() .. '/project.godot'
+if vim.fn.filereadable(project) == 1 then
+    local socket = vim.fn.getcwd() .. '/godothost'
+    pcall(vim.uv.fs_unlink, socket)
+    vim.fn.serverstart(socket)
+end
