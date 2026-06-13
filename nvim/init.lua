@@ -100,6 +100,7 @@ vim.lsp.enable({
     'clangd',
     'gdscript',
     "lua_ls",
+    "make-ls"
 })
 
 -- dap
@@ -158,11 +159,12 @@ local harpoon_ui = require('harpoon.ui')
 vim.keymap.set('n', '<leader>a', haproon_mark.add_file)
 vim.keymap.set('n', '<C-e>', harpoon_ui.toggle_quick_menu)
 
-vim.keymap.set('n', '<C-h>', function() harpoon_ui.nav_file(1) end)
-vim.keymap.set('n', '<C-t>', function() harpoon_ui.nav_file(2) end)
-vim.keymap.set('n', '<C-n>', function() harpoon_ui.nav_file(3) end)
-vim.keymap.set('n', '<C-s>', function() harpoon_ui.nav_file(4) end)
-vim.keymap.set('n', '<C-z>', function() harpoon_ui.nav_file(5) end)
+local harpbind = function(n) return function() harpoon_ui.nav_file(n) end end
+vim.keymap.set('n', '<leader>1', harpbind(1))
+vim.keymap.set('n', '<leader>2', harpbind(2))
+vim.keymap.set('n', '<leader>3', harpbind(3))
+vim.keymap.set('n', '<leader>4', harpbind(4))
+vim.keymap.set('n', '<leader>5', harpbind(5))
 
 -- nvim-tree
 require('nvim-tree').setup({
@@ -181,6 +183,8 @@ require('nvim-tree').setup({
     },
     on_attach = function(bufnr)
         local api = require('nvim-tree.api')
+        api.map.on_attach.default(bufnr)
+
 
         vim.keymap.set('n', '=', api.tree.change_root_to_node, {
             buffer = bufnr,

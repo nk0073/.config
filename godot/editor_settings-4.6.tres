@@ -1,6 +1,9 @@
 [gd_resource type="EditorSettings" format=3]
 
 [resource]
+interface/editor/expand_to_title = false
+interface/editor/main_font_size = 16
+interface/editor/main_font = "/home/plky/.local/share/fonts/IosevkaNerdFont-Regular.ttf"
 interface/theme/base_color = Color(0.161, 0.161, 0.161, 1)
 interface/theme/accent_color = Color(0.337, 0.62, 1, 1)
 interface/theme/contrast = 0.3
@@ -49,12 +52,13 @@ export/web/http_port = 8060
 export/web/tls_key = ""
 export/web/tls_certificate = ""
 export/windows/osslsigncode = ""
-_editor_settings_advanced_mode = false
+_editor_settings_advanced_mode = true
 _project_settings_advanced_mode = false
 _export_template_download_directory = ""
 _default_feature_profile = ""
 _script_setup_templates_dictionary = {
-"CharacterBody3D": "0ObjectEmpty"
+"CharacterBody3D": "0ObjectEmpty",
+"Node": "0NodeDefault"
 }
 _use_favorites_root_selection = false
 _script_setup_use_script_templates = true
