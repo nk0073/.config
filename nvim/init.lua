@@ -11,6 +11,7 @@ local gh = function(x) return 'https://github.com/' .. x end
 vim.pack.add({
     gh('vague-theme/vague.nvim'),
     gh('blazkowolf/gruber-darker.nvim'),
+    gh('nvim-mini/mini.statusline'),
 
     gh('romus204/tree-sitter-manager.nvim'),
     gh('neovim/nvim-lspconfig'),
@@ -41,6 +42,24 @@ vim.pack.add({
 require("colorizer").setup()
 require("nvim-autopairs").setup({})
 
+-- statusline
+vim.o.showmode = false
+require('mini.statusline').setup({
+    use_icons = false,
+})
+local function statusline_colors()
+    vim.api.nvim_set_hl(0, 'MiniStatuslineModeNormal',  { fg = '#ffffff', bg = '#303030', bold = true })
+    vim.api.nvim_set_hl(0, 'MiniStatuslineModeInsert',  { fg = '#ffffff', bg = '#005f00', bold = true })
+    vim.api.nvim_set_hl(0, 'MiniStatuslineModeVisual',  { fg = '#ffffff', bg = '#5f00af', bold = true })
+    vim.api.nvim_set_hl(0, 'MiniStatuslineModeReplace', { fg = '#ffffff', bg = '#870000', bold = true })
+    vim.api.nvim_set_hl(0, 'MiniStatuslineModeCommand', { fg = '#ffffff', bg = '#005f87', bold = true })
+    vim.api.nvim_set_hl(0, 'MiniStatuslineModeOther',   { fg = '#ffffff', bg = '#444444', bold = true })
+end
+statusline_colors()
+vim.api.nvim_create_autocmd('ColorScheme', {
+    callback = statusline_colors,
+})
+
 -- treesitter
 require('tree-sitter-manager').setup({
     ensure_installed = {
@@ -53,7 +72,7 @@ require('tree-sitter-manager').setup({
         'markdown',
         'vim',
     },
-    highlight = true,
+    highlight = false,
     auto_install = true,
 })
 
@@ -209,6 +228,7 @@ vim.o.guicursor = 'a:block,r-cr-o:hor20'
 
 -- vim.cmd.colorscheme('vague')
 vim.cmd.colorscheme('gruber-darker')
+vim.cmd.syntax('off')
 
 -- transparent bg
 vim.cmd [[

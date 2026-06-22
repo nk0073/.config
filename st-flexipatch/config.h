@@ -43,9 +43,9 @@ static const int pseudotransparency = 1;
 #if RELATIVEBORDER_PATCH
 /* borderperc: percentage of cell width to use as a border
  *             0 = no border, 100 = border width is same as cell width */
-int borderperc = 20;
+int borderperc = 10;
 #else
-static int borderpx = 10;
+static int borderpx = 6;
 #endif // RELATIVEBORDER_PATCH
 
 #if OPENURLONCLICK_PATCH
