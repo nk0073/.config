@@ -23,6 +23,7 @@ alias man="MANPAGER=\"nvim +Man!\" man"
 alias less="less --incsearch"
 alias faggot="exit"
 alias nohup='nohup > "${TMPDIR:-/tmp}/nohup.$USER.$$.out" 2>&1'
+alias fehc="feh -r --action1 ';printf \"%s\" \"\$(realpath %F)\" | xclip -selection clipboard' --action2 ';mime=\$(file -b --mime-type %F); xclip -selection clipboard -t \"\$mime\" -i %F'"
 
 # plasma rendering often breaks after sleeping with an nvidia gpu (fuck nvidia)
 alias restartplasma="nohup sh -c 'kquitapp6 plasmashell && kstart plasmashell' >/dev/null 2>&1"

@@ -39,6 +39,11 @@ wal/
 mpv/
 fontforge/
 ghb/
+user-dirs*
+lazygit/
+clangd/
+Smart Code ltd/
+
 
 # KDE / Plasma / Qt
 KDE/

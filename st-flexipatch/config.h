@@ -13,14 +13,14 @@
  *
  */
 
-#define _FONTSIZE "20"
+#define _FONTSIZE "18"
 // some other fonts that I like
 // static char *font = "IBM Plex Mono:pixelsize=" _FONTSIZE ":antialias=true:autohint=true;rgba=rgb";
 // static char *font = "GoogleSansCode:pixelsize=" _FONTSIZE ":antialias=true:autohint=true;rgba=rgb";
 // static char *font = "CommitMonoc2ny:pixelsize=" _FONTSIZE ":antialias=true:autohint=true;rgba=rgb";
 // static char *font = "mononoki:pixelsize=" _FONTSIZE ":antialias=true:autohint=true;rgba=rgb";
-static char *font = "ComicShannsMonoNerdFont:pixelsize=" _FONTSIZE ":antialias=true:autohint=true;rgba=rgb";
-// static char *font = "Miracode:pixelsize=" _FONTSIZE ":antialias=true:autohint=true;rgba=rgb";
+// static char *font = "ComicShannsMonoNerdFont:pixelsize=" _FONTSIZE ":antialias=true:autohint=true;rgba=rgb";
+static char *font = "Miracode:pixelsize=" _FONTSIZE ":antialias=true:autohint=true;rgba=rgb";
 
 #if FONT2_PATCH
 /* Spare fonts */

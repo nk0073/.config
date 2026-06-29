@@ -218,10 +218,7 @@ vim.keymap.set('n', '<leader>pv', '<cmd>NvimTreeToggle<CR>', { silent = true })
 -- telescope
 local telescope = require('telescope.builtin')
 vim.keymap.set('n', '<leader>pf', telescope.find_files, {})
-vim.keymap.set('n', '<leader>pw', function()
-    telescope.grep_string({ search = vim.fn.input('Grep > ') })
-end)
-
+vim.keymap.set('n', '<leader>pw', telescope.grep_string, {})
 
 -- Visuals
 vim.o.guicursor = 'a:block,r-cr-o:hor20'
